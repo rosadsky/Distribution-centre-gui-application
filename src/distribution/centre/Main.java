@@ -7,10 +7,6 @@ public class Main {
         //moj kodddsadasdassag
 
         System.out.println("Tibor Ten");
-
-
-
-
         System.out.println("Zas");
     }
 }
