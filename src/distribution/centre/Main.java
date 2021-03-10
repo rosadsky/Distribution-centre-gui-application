@@ -8,5 +8,7 @@ public class Main {
 
         System.out.println("Tibor Ten");
         System.out.println("Zas");
+        System.out.println("Tibor Ten");
+        System.out.println("Tibor Ten");
     }
 }
