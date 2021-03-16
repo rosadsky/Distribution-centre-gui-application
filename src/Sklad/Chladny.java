@@ -1,4 +1,4 @@
 package Sklad;
 
-public class Chladny {
+public class Chladny extends Sklad {
 }

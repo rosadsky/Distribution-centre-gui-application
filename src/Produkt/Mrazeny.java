@@ -1,4 +1,4 @@
 package Produkt;
 
-public class Mrazeny {
+public class Mrazeny extends Produkt {
 }

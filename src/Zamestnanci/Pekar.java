@@ -1,4 +1,4 @@
 package Zamestnanci;
 
-public class Pekar {
+public class Pekar extends Zamestnanec {
 }

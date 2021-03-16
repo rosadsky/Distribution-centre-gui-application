@@ -1,4 +1,4 @@
 package Zamestnanci;
 
-public class Skladnik {
+public class Skladnik extends Zamestnanec {
 }

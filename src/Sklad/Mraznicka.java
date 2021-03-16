@@ -1,4 +1,4 @@
 package Sklad;
 
-public class Mraznicka {
+public class Mraznicka extends Sklad {
 }

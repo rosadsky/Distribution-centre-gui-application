@@ -1,4 +1,4 @@
 package Produkt;
 
-public class Trvanlivy {
+public class Trvanlivy extends Produkt {
 }
