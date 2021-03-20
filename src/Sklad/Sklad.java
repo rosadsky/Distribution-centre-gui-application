@@ -12,4 +12,12 @@ public class Sklad {
 
 
     }
+
+    public int getPocetZamestancov() {
+        return pocetZamestancov;
+    }
+
+    public int getPocetVozikov() {
+        return pocetVozikov;
+    }
 }
