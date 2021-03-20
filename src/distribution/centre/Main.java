@@ -12,7 +12,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -62,38 +61,21 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Distribution Centre - information system by Roman Osadsky");
-        Button btn = new Button();
-        btn.setText("Nový zamestnanec");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
+        Button btnNovyZamestnanec = new Button();
+        Button btnNovyProdukt = new Button();
+        btnNovyZamestnanec.setText("Nový zamestnanec");
+        btnNovyProdukt.setText("Novy produkt");
+
+        btnNovyZamestnanec.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
-
-                Label secondLabel = new Label("I'm a Label on new Window");
-
-                StackPane secondaryLayout = new StackPane();
-                secondaryLayout.getChildren().add(secondLabel);
-
-                Scene secondScene = new Scene(secondaryLayout, 230, 100);
-
-
-                // New window (Stage)
-                Stage newWindow = new Stage();
-                newWindow.setTitle("Second Stage");
-                newWindow.setScene(secondScene);
-
-                // Set position of second window, related to primary window.
-                newWindow.setX(primaryStage.getX() + 200);
-                newWindow.setY(primaryStage.getY() + 100);
-
-                newWindow.show();
-
-
+                ListOfDodavatelia.add(new Dodavatel(15,12," Treska ZA"));
             }
         });
 
         StackPane root = new StackPane();
-        root.getChildren().add(btn);
+        root.getChildren().add(btnNovyZamestnanec);
         primaryStage.setScene(new Scene(root, 500, 250));
         primaryStage.show();
     }
