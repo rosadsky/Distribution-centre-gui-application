@@ -6,6 +6,8 @@ public class Skladnik extends Zamestnanec {
     public Skladnik(String meno, int vek, double oddpracovanychhodin, int platovaTrieda, double rychlostPrace) {
         super(meno, vek, oddpracovanychhodin, platovaTrieda);
         this.rychlostPrace = rychlostPrace;
+
+        System.out.println("Vytvoril som skladnika " + meno + "...");
     }
 }
 

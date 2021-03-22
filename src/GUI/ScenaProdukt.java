@@ -12,10 +12,11 @@ import javafx.scene.control.Label;
 
 public class ScenaProdukt {
 
-    public static Scene makeProdukt(Stage window, Scene scene1) {
+    public static Scene makeProdukt(Stage window) {
         // HPRIDANIE PRODUKTU MLIEČNY {
 
         Scene scenaPridanieProduktu;
+
 
         Label textLabel = new Label();
         Label textLabel1 = new Label();
@@ -30,8 +31,10 @@ public class ScenaProdukt {
 
         Button button2 = new Button("OK!");
         button2.setOnAction(e -> {
-            window.setScene(scene1);
             Main.instertString(pocetKusov,nazovProduktu,dobaSpotreby);
+            System.out.println("Klik");
+            window.setScene(Main.scene1);
+
 
         });
 
