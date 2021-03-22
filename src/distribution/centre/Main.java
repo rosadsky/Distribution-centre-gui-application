@@ -8,15 +8,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import Produkt.*;
 import Sklad.*;
+
+import javax.xml.soap.Text;
 
 
 public class Main extends Application {
@@ -30,17 +32,12 @@ public class Main extends Application {
     public static void main(String[] args) {
 
 
-
-
         ListOfDodavatelia = new ArrayList<Dodavatel>();
         ListProduktov = new ArrayList<Produkt>();
-
 
       Teply teplySklad = new Teply(12,12,true);
       Chladny chladnySklad = new Chladny(13,12,10);
       Mraznicka mraznickaSklad = new Mraznicka(14,12,22);
-
-
 
       System.out.println("Teply sklad: " + teplySklad.getPocetZamestancov());
       System.out.println("Chladny sklad: " + chladnySklad.getPocetZamestancov());
@@ -48,8 +45,7 @@ public class Main extends Application {
 
        ListOfDodavatelia.add(new Dodavatel(15,12," Treska Žilina"));
        ListOfDodavatelia.add(new Dodavatel(15,12," Treska BA"));
-       ListOfDodavatelia.add(new Dodavatel(15,12," Treska ZA"));
-
+       //ListOfDodavatelia.add(new Dodavatel(15,12," Treska ZA"));
 
         ListProduktov.add(new Mliecny(12,"Mlieko",12));
         ListProduktov.add(new Mrazeny(12,"Masko Kuracie",true));
@@ -60,23 +56,48 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Distribution Centre - information system by Roman Osadsky");
-        Button btnNovyZamestnanec = new Button();
-        Button btnNovyProdukt = new Button();
-        btnNovyZamestnanec.setText("Nový zamestnanec");
-        btnNovyProdukt.setText("Novy produkt");
+        Stage window;
+        Button button;
 
-        btnNovyZamestnanec.setOnAction(new EventHandler<ActionEvent>() {
+        window = primaryStage;
+        window.setTitle("JAVAFX - Joe");
+//Form
+        TextField pocetKusov = new TextField();
+        TextField nazovProduktu = new TextField();
+        TextField dobaSpotreby = new TextField();
+        button = new Button("Click me");
+        button.setOnAction(e -> {
+            instertString(pocetKusov,nazovProduktu,dobaSpotreby);
 
-            @Override
-            public void handle(ActionEvent event) {
-                ListOfDodavatelia.add(new Dodavatel(15,12," Treska ZA"));
-            }
         });
+//Layout
+        VBox layout = new VBox();
 
-        StackPane root = new StackPane();
-        root.getChildren().add(btnNovyZamestnanec);
-        primaryStage.setScene(new Scene(root, 500, 250));
-        primaryStage.show();
+        layout.setPadding(new Insets(5,400,10,5));
+        layout.getChildren().addAll(pocetKusov);
+        layout.getChildren().addAll(nazovProduktu);
+        layout.getChildren().addAll(dobaSpotreby,button);
+        Scene scene = new Scene(layout,500,500);
+        window.setScene(scene);
+        window.show();
     }
+
+    private void pocetKusov(TextField input, String message) {
+        try {
+            int age = Integer.parseInt(input.getText());
+            System.out.println("User is " + age);
+            ListProduktov.add(new Mliecny(age,"Mlieko",12));
+        } catch(NumberFormatException e) {
+            System.out.println("Error: " + message + "is not a number");
+        }
+    }
+    private void instertString(TextField pocetKusov, TextField nazov, TextField koniecSpotreby) {
+        int pocetKusovInt = Integer.parseInt(pocetKusov.getText());
+        int koniecSpotrebyInt = Integer.parseInt(koniecSpotreby.getText());
+
+        ListProduktov.add(new Mliecny(pocetKusovInt,nazov.getText(),koniecSpotrebyInt));
+
+    }
+
+
 }
