@@ -13,6 +13,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.application.Application;
@@ -74,61 +75,25 @@ public class Main extends Application {
 
         window = primaryStage;
 
-
+        //Scéna na pridanie produktu
         scenaPridanieProduktu= ScenaProdukt.makeProdukt(window,scene1);
+
+
         // HLAVNA SCÉNA {
 
-
-        Button button1 = new Button("Pridanie produktu ->");
-        Button button3 = new Button("Pridanie zamestnanca ->");
+        Button button1 = new Button("   Pridanie produktu    ");
+        Button button3 = new Button("  Pridanie zamestnanca  ");
         button1.setOnAction(e -> {
             window.setScene(scenaPridanieProduktu);
         });
 
         VBox layout1 = new VBox(20);
         layout1.getChildren().addAll(button1,button3);
-        scene1 = new Scene(layout1,200,200);
 
-        // } HLAVNA SCENA
-
-        /*------------------------------------*/
+        layout1.setPadding(new Insets(50, 5, 10, 50));
+        scene1 = new Scene(layout1,400,400);
 
 
-        // HPRIDANIE PRODUKTU MLIEČNY {
-/*
-        Label textLabel = new Label();
-        Label textLabel1 = new Label();
-        Label textLabel2 = new Label();
-
-        textLabel.setText("Pocet kusov:");
-        TextField pocetKusov = new TextField();
-        textLabel1.setText("Nazov Produktu:");
-        TextField nazovProduktu = new TextField();
-        textLabel2.setText("Doba spotreby:");
-        TextField dobaSpotreby = new TextField();
-
-        Button button2 = new Button("OK!");
-        button2.setOnAction(e-> {
-            window.setScene(scene1);
-            instertString(pocetKusov,nazovProduktu,dobaSpotreby);
-
-        });
-
-
-        VBox pridanieProduktu = new VBox(5);
-
-        pridanieProduktu.setPadding(new Insets(5,400,10,5));
-
-        pridanieProduktu.getChildren().addAll(textLabel,pocetKusov);
-        pridanieProduktu.getChildren().addAll(textLabel1,nazovProduktu);
-        pridanieProduktu.getChildren().addAll(textLabel2,dobaSpotreby,button2);
-        //scenaPridanieProduktu = new Scene(pridanieProduktu, 600, 300);
-
-        */
-
-        // } PRIDANIE PRODUKTU MLIEČNY
-
-        /*------------------------------------*/
 
         window.setScene(scene1);
         window.setTitle("Distribution Centre System ");
