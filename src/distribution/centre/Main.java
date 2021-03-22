@@ -2,6 +2,7 @@ package distribution.centre;
 
 import java.util.ArrayList;
 
+import GUI.PrehladZamestnancov;
 import GUI.ScenaProdukt;
 import GUI.ScenaSkladnik;
 import Sklad.Sklad;
@@ -41,7 +42,7 @@ public class Main extends Application {
 
     Stage window;
     public static Scene scene1;
-    Scene scenaPridanieProduktu,scenaPridanieSkladnik;
+    Scene scenaPridanieProduktu,scenaPridanieSkladnik,scenaPrehladZamestnancov;
 
     
     public static void main(String[] args) {
@@ -83,7 +84,14 @@ public class Main extends Application {
 
         //Scéna na pridanie produktu
         scenaPridanieProduktu= ScenaProdukt.makeProdukt(window);
+
         scenaPridanieSkladnik = ScenaSkladnik.makeSkladnik(window);
+
+        scenaPrehladZamestnancov = PrehladZamestnancov.showPrehlad(window);
+
+
+
+
 
 
         // HLAVNA SCÉNA {
@@ -92,9 +100,10 @@ public class Main extends Application {
 
         Button PridanieSkladnika = new Button("  Pridanie zamestnanca  ");
 
+        Button PrehladZamestnancov = new Button(" Prehlad zamestnancov ");
+
         PridanieProduktu.setOnAction(e -> {
             window.setScene(scenaPridanieProduktu);
-
 
         });
 
@@ -102,9 +111,12 @@ public class Main extends Application {
             window.setScene(scenaPridanieSkladnik);
         });
 
+        PrehladZamestnancov.setOnAction(e -> {
+            window.setScene(scenaPrehladZamestnancov);
+        });
 
         VBox layout1 = new VBox(20);
-        layout1.getChildren().addAll(PridanieProduktu,PridanieSkladnika);
+        layout1.getChildren().addAll(PridanieProduktu,PridanieSkladnika,PrehladZamestnancov);
 
         layout1.setPadding(new Insets(50, 5, 10, 50));
         scene1 = new Scene(layout1,400,400);
@@ -125,6 +137,7 @@ public class Main extends Application {
             System.out.println("Error: " + message + "is not a number");
         }
     }
+
     public static void instertString(TextField pocetKusov, TextField nazov, TextField koniecSpotreby) {
         int pocetKusovInt = Integer.parseInt(pocetKusov.getText());
         int koniecSpotrebyInt = Integer.parseInt(koniecSpotreby.getText());
