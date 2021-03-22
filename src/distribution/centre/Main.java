@@ -2,6 +2,7 @@ package distribution.centre;
 
 import java.util.ArrayList;
 
+import GUI.ScenaProdukt;
 import Sklad.Sklad;
 import distribution.centre.*;
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class Main extends Application {
 
     Stage window;
     Scene scene1;
-    Scene scene2;
+    Scene scenaPridanieProduktu;
 
     
     public static void main(String[] args) {
@@ -66,49 +67,22 @@ public class Main extends Application {
 
     }
 
+
+
     @Override
-    /*
-    public void start(Stage primaryStage) throws Exception {
-        Stage window;
-        Button button;
-
-        window = primaryStage;
-        window.setTitle("JAVAFX - Joe");
-
-
-
-        TextField pocetKusov = new TextField();
-        TextField nazovProduktu = new TextField();
-        TextField dobaSpotreby = new TextField();
-        button = new Button("Click me");
-        button.setOnAction(e -> {
-            instertString(pocetKusov,nazovProduktu,dobaSpotreby);
-
-        });
-
-        VBox layout = new VBox();
-
-        layout.setPadding(new Insets(5,400,10,5));
-        layout.getChildren().addAll(pocetKusov);
-        layout.getChildren().addAll(nazovProduktu);
-        layout.getChildren().addAll(dobaSpotreby,button);
-
-        Scene scene = new Scene(layout,500,500);
-        window.setScene(scene);
-        window.show();
-    }
-*/
     public void start(Stage primaryStage) throws Exception {
 
         window = primaryStage;
 
 
+        scenaPridanieProduktu= ScenaProdukt.makeProdukt(window,scene1);
         // HLAVNA SCÉNA {
+
 
         Button button1 = new Button("Pridanie produktu ->");
         Button button3 = new Button("Pridanie zamestnanca ->");
         button1.setOnAction(e -> {
-            window.setScene(scene2);
+            window.setScene(scenaPridanieProduktu);
         });
 
         VBox layout1 = new VBox(20);
@@ -119,8 +93,9 @@ public class Main extends Application {
 
         /*------------------------------------*/
 
-        // HPRIDANIE PRODUKTU MLIEČNY {
 
+        // HPRIDANIE PRODUKTU MLIEČNY {
+/*
         Label textLabel = new Label();
         Label textLabel1 = new Label();
         Label textLabel2 = new Label();
@@ -147,7 +122,9 @@ public class Main extends Application {
         pridanieProduktu.getChildren().addAll(textLabel,pocetKusov);
         pridanieProduktu.getChildren().addAll(textLabel1,nazovProduktu);
         pridanieProduktu.getChildren().addAll(textLabel2,dobaSpotreby,button2);
-        scene2 = new Scene(pridanieProduktu, 600, 300);
+        //scenaPridanieProduktu = new Scene(pridanieProduktu, 600, 300);
+
+        */
 
         // } PRIDANIE PRODUKTU MLIEČNY
 
@@ -169,7 +146,7 @@ public class Main extends Application {
             System.out.println("Error: " + message + "is not a number");
         }
     }
-    private void instertString(TextField pocetKusov, TextField nazov, TextField koniecSpotreby) {
+    public static void instertString(TextField pocetKusov, TextField nazov, TextField koniecSpotreby) {
         int pocetKusovInt = Integer.parseInt(pocetKusov.getText());
         int koniecSpotrebyInt = Integer.parseInt(koniecSpotreby.getText());
 
