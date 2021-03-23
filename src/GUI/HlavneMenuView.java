@@ -13,24 +13,36 @@ public class HlavneMenuView {
     Scene scenaHlavneMenu;
 
     Label textLabel = new Label();
-    Label textLabel1 = new Label();
-    Label textLabel2 = new Label();
+    Button btnPridatZamestnanca = new Button("PRIDAŤ ZAMESTNANCA");
+
+
 
 
 
     public HlavneMenuView() {
 
         textLabel.setText("HLAVNE MENU ");
-        textLabel1.setText("AAAA ");
-
 
         VBox hlavneMenu = new VBox(5);
 
         hlavneMenu.setPadding(new Insets(5, 400, 10, 5));
         hlavneMenu.getChildren().addAll(textLabel);
-        hlavneMenu.getChildren().addAll(textLabel1);
+        hlavneMenu.getChildren().addAll(btnPridatZamestnanca);
 
         scenaHlavneMenu = new Scene(hlavneMenu, 600, 300);
 
+    }
+
+    public Scene getScenaHlavneMenu() {
+        return scenaHlavneMenu;
+    }
+
+    public Label getTextLabel() {
+        return textLabel;
+    }
+
+
+    public Button getBtnPridatZamestnanca() {
+        return btnPridatZamestnanca;
     }
 }

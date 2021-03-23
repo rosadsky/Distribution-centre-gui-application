@@ -78,15 +78,23 @@ public class Main extends Application {
 
     public void start(Stage primaryStage) throws Exception {
 
+        Stage window = primaryStage;
+        Stage okno;
+
         ZamestnanciView zamestnanciView = new ZamestnanciView();
         ZamestnanciModel zamestnanciModel = new ZamestnanciModel();
         ZamestnanciController zamestnanciController = new ZamestnanciController(zamestnanciView,zamestnanciModel);
 
 
+        HlavneMenuView hlavneMenuView = new HlavneMenuView();
+        HlavneMenuModel hlavneMenuModel = new HlavneMenuModel();
+        HlavneMenuController hlavneMenuController = new HlavneMenuController(hlavneMenuView,hlavneMenuModel,zamestnanciView,window);
 
 
-        primaryStage.setScene(zamestnanciView.getScenaPridanieSkladnik());
-        primaryStage.show();
+
+
+        window.setScene(hlavneMenuView.getScenaHlavneMenu());
+        window.show();
 
 
 

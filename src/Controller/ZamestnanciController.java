@@ -1,8 +1,10 @@
 package Controller;
 
+import GUI.HlavneMenuView;
 import GUI.ZamestnanciModel;
 import GUI.ZamestnanciView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class ZamestnanciController {
 
@@ -24,6 +26,7 @@ public class ZamestnanciController {
             int vekZamestnanca = Integer.parseInt(zamestnanciView.getVek().getText());
 
             zamestnanciModel.pridanieZamestnanca(menoZamestnanca,vekZamestnanca,zamestnanciView.getBoxSkladnik().isSelected(),zamestnanciView.getBoxManager().isSelected(),zamestnanciView.getBoxPekar().isSelected());
+            zamestnanciView.getScenaPridanieSkladnik().getWindow().hide();
 
         } );
 
@@ -31,4 +34,6 @@ public class ZamestnanciController {
 
 
     }
+
+
 }
