@@ -9,12 +9,16 @@ import javafx.stage.Stage;
 
 public class PrehladZamestnancov {
 
+    private static Scene scenaPrehladSkladnikov;
+    //Scene scenaPrehladSkladnikov;
+
     public static Scene showPrehlad(Stage window) {
         // HPRIDANIE PRODUKTU MLIEČNY {
 
         Scene scenaPridanieProduktu;
 
 
+        scenaPrehladSkladnikov = TabulkaSkladnikov.showTabulkaSkladnikov(window);
 
         Button btnSkladnici = new Button("Skladnici ");
         Button btnManazeri = new Button("Manazeri ");
@@ -22,6 +26,10 @@ public class PrehladZamestnancov {
 
 
         Button exit = new Button("VRATIT SA SPAT");
+
+        btnSkladnici.setOnAction(e -> {
+            window.setScene(scenaPrehladSkladnikov);
+        });
 
         exit.setOnAction(e -> {
            // window.setScene(Main.scene1);

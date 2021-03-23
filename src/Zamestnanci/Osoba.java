@@ -8,4 +8,6 @@ public class Osoba {
         this.meno = meno;
         this.vek = vek;
     }
+
+
 }
