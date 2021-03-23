@@ -81,6 +81,10 @@ public class Main extends Application {
         Stage window = primaryStage;
         Stage okno;
 
+        SpravaZamestnancovView spravaZamestnancovView = new SpravaZamestnancovView();
+        SpravaZamestnancvoModel spravaZamestnancvoModel = new SpravaZamestnancvoModel();
+        SpravaZamestnancovController spravaZamestnancovController = new SpravaZamestnancovController(spravaZamestnancovView,spravaZamestnancvoModel);
+
         ZamestnanciView zamestnanciView = new ZamestnanciView();
         ZamestnanciModel zamestnanciModel = new ZamestnanciModel();
         ZamestnanciController zamestnanciController = new ZamestnanciController(zamestnanciView,zamestnanciModel);
@@ -88,7 +92,7 @@ public class Main extends Application {
 
         HlavneMenuView hlavneMenuView = new HlavneMenuView();
         HlavneMenuModel hlavneMenuModel = new HlavneMenuModel();
-        HlavneMenuController hlavneMenuController = new HlavneMenuController(hlavneMenuView,hlavneMenuModel,zamestnanciView,window);
+        HlavneMenuController hlavneMenuController = new HlavneMenuController(hlavneMenuView,hlavneMenuModel,zamestnanciView,spravaZamestnancovView,window);
 
 
 
@@ -99,5 +103,8 @@ public class Main extends Application {
 
 
     }
+
+
+
 
 }

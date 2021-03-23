@@ -14,6 +14,7 @@ public class HlavneMenuView {
 
     Label textLabel = new Label();
     Button btnPridatZamestnanca = new Button("PRIDAŤ ZAMESTNANCA");
+    Button btnSpravaZamestnanca = new Button("PRIDAŤ ZAMESTNANCA");
 
 
 
@@ -27,7 +28,7 @@ public class HlavneMenuView {
 
         hlavneMenu.setPadding(new Insets(5, 400, 10, 5));
         hlavneMenu.getChildren().addAll(textLabel);
-        hlavneMenu.getChildren().addAll(btnPridatZamestnanca);
+        hlavneMenu.getChildren().addAll(btnPridatZamestnanca,btnSpravaZamestnanca);
 
         scenaHlavneMenu = new Scene(hlavneMenu, 600, 300);
 
@@ -44,5 +45,9 @@ public class HlavneMenuView {
 
     public Button getBtnPridatZamestnanca() {
         return btnPridatZamestnanca;
+    }
+
+    public Button getBtnSpravaZamestnanca() {
+        return btnSpravaZamestnanca;
     }
 }

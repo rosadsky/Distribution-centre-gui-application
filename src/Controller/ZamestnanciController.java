@@ -16,11 +16,6 @@ public class ZamestnanciController {
         this.zamestnanciView = zamestnanciView;
         this.zamestnanciModel = zamestnanciModel;
 
-       // String menoZamestnanca = zamestnanciView.getMeno().getText();
-       // int vekZamestnanca = Integer.parseInt(zamestnanciView.getVek().getText());
-
-
-
         zamestnanciView.getBtnSkladnik().setOnAction(e -> {
             String menoZamestnanca = zamestnanciView.getMeno().getText();
             int vekZamestnanca = Integer.parseInt(zamestnanciView.getVek().getText());
