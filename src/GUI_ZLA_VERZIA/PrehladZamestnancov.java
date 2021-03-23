@@ -1,12 +1,9 @@
-package GUI;
+package GUI_ZLA_VERZIA;
 
 import distribution.centre.Main;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
@@ -27,7 +24,7 @@ public class PrehladZamestnancov {
         Button exit = new Button("VRATIT SA SPAT");
 
         exit.setOnAction(e -> {
-            window.setScene(Main.scene1);
+           // window.setScene(Main.scene1);
 
 
         });

@@ -1,4 +1,4 @@
-package GUI;
+package GUI_ZLA_VERZIA;
 
 import distribution.centre.Main;
 
@@ -31,9 +31,9 @@ public class ScenaProdukt {
 
         Button button2 = new Button("OK!");
         button2.setOnAction(e -> {
-            Main.instertString(pocetKusov,nazovProduktu,dobaSpotreby);
+          //  Main.instertString(pocetKusov,nazovProduktu,dobaSpotreby);
             System.out.println("Klik");
-            window.setScene(Main.scene1);
+           // window.setScene(Main.scene1);
 
 
         });

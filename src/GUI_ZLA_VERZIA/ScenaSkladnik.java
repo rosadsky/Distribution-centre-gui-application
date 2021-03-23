@@ -1,4 +1,4 @@
-package GUI;
+package GUI_ZLA_VERZIA;
 
 import distribution.centre.Main;
 import javafx.geometry.Insets;
