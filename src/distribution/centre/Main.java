@@ -6,15 +6,19 @@ import GUI.PrehladZamestnancov;
 import GUI.ScenaProdukt;
 import GUI.ScenaSkladnik;
 import Sklad.Sklad;
+import Zamestnanci.Osoba;
 import Zamestnanci.Skladnik;
 import distribution.centre.*;
 import java.util.ArrayList;
 import java.util.List;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -43,7 +47,7 @@ public class Main extends Application {
     Stage window;
     public static Scene scene1;
     Scene scenaPridanieProduktu,scenaPridanieSkladnik,scenaPrehladZamestnancov;
-
+    public Sklad centralnySklad;
     
     public static void main(String[] args) {
 
@@ -52,9 +56,14 @@ public class Main extends Application {
         ListOfDodavatelia = new ArrayList<Dodavatel>();
         ListProduktov = new ArrayList<Produkt>();
 
+
+
+      Sklad centralnySklad = new Sklad(100,12);
       Teply teplySklad = new Teply(12,12,true);
       Chladny chladnySklad = new Chladny(13,12,10);
       Mraznicka mraznickaSklad = new Mraznicka(14,12,22);
+
+
 
       System.out.println("Teply sklad: " + teplySklad.getPocetZamestancov());
       System.out.println("Chladny sklad: " + chladnySklad.getPocetZamestancov());
@@ -64,7 +73,8 @@ public class Main extends Application {
        ListOfDodavatelia.add(new Dodavatel(15,12," Treska BA"));
        //ListOfDodavatelia.add(new Dodavatel(15,12," Treska ZA"));
 
-        Sklad.definovanieZamestnancov();
+        centralnySklad.definovanieZamestnancov();
+
 
 
 
@@ -79,7 +89,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
+        TableView<Product> table;
         window = primaryStage;
 
         //Scéna na pridanie produktu
@@ -87,7 +97,7 @@ public class Main extends Application {
 
         scenaPridanieSkladnik = ScenaSkladnik.makeSkladnik(window);
 
-        scenaPrehladZamestnancov = PrehladZamestnancov.showPrehlad(window);
+        //scenaPrehladZamestnancov = PrehladZamestnancov.showPrehlad(window);
 
 
 
@@ -115,11 +125,31 @@ public class Main extends Application {
             window.setScene(scenaPrehladZamestnancov);
         });
 
+        /*
+
+       TABULKA
+         */
+
+
+        TableColumn<Product,String> nameColumn = new TableColumn<>("Name");
+        nameColumn.setMinWidth(200);
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+        table = new TableView<>();
+        table.setItems(centralnySklad.getProduct1());
+        table.getColumns().addAll(nameColumn);
+
+
+
         VBox layout1 = new VBox(20);
-        layout1.getChildren().addAll(PridanieProduktu,PridanieSkladnika,PrehladZamestnancov);
+        layout1.getChildren().addAll(PridanieProduktu,PridanieSkladnika,PrehladZamestnancov,table);
 
         layout1.setPadding(new Insets(50, 5, 10, 50));
         scene1 = new Scene(layout1,400,400);
+
+
+
+
 
         window.setScene(scene1);
         window.setTitle("Distribution Centre System ");
@@ -168,6 +198,7 @@ public class Main extends Application {
 
 
     }
+
 
 
 }
