@@ -36,8 +36,8 @@ public class ScenaSkladnik {
 
         Button BtnSkladnik = new Button("PRIDAŤ ZAMESTNANCA");
         BtnSkladnik.setOnAction(e -> {
-            Main.pridajZamestnanca(meno,vek,boxSkladnik,boxManager,boxPekar);
-            window.setScene(Main.scene1);
+           // Main.pridajZamestnanca(meno,vek,boxSkladnik,boxManager,boxPekar);
+           // window.setScene(Main.scene1);
         });
 
 

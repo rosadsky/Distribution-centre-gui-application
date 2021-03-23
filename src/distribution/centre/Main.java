@@ -79,10 +79,15 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         ZamestnanciView zamestnanciView = new ZamestnanciView();
-
         ZamestnanciModel zamestnanciModel = new ZamestnanciModel();
+        ZamestnanciController zamestnanciController = new ZamestnanciController(zamestnanciView,zamestnanciModel);
 
-        ZamestnanciController zamestnanciController = new ZamestnanciController();
+
+
+
+        primaryStage.setScene(zamestnanciView.getScenaPridanieSkladnik());
+        primaryStage.show();
+
 
 
     }
