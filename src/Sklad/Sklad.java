@@ -2,7 +2,6 @@ package Sklad;
 
 
 import Zamestnanci.*;
-import distribution.centre.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -43,15 +42,6 @@ public class Sklad {
 
 
 
-    public ObservableList<Product> getProduct1() {
-        ObservableList<Product> products = FXCollections.observableArrayList();
-        products.add(new Product("LapTop", 859, 20));
-        products.add(new Product("Bouncy Ball", 2.49, 198));
-        products.add(new Product("Toilet", 99, 74));
-        products.add(new Product("The Notebook DVD", 19.99, 12));
-        products.add(new Product("Corn", 1.49, 256));
-        return products;
-    }
 
 
     public int getPocetZamestancov() {
