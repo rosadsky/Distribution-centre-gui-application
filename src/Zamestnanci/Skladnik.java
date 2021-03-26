@@ -9,5 +9,17 @@ public class Skladnik extends Zamestnanec {
 
         System.out.println("Vytvoril som skladnika " + meno + "...");
     }
+
+    /* ------ POLYMORFIZMUS ------ */
+
+    public double vypocetVyplaty(int vek, double oddpracovanychhodin, int platovaTrieda,double rychlostPrace) {
+        double vyplata;
+
+
+        vyplata = ((10)*platovaTrieda)*oddpracovanychhodin+(vek*platovaTrieda+rychlostPrace);
+
+
+        return  vyplata;
+    }
 }
 

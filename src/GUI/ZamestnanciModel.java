@@ -6,10 +6,13 @@ import Zamestnanci.Pekar;
 import Zamestnanci.Skladnik;
 import Zamestnanci.Zamestnanec;
 
+import Sklad.Sklad;
+
 import java.util.ArrayList;
 
 public class ZamestnanciModel {
 
+    Sklad sklad;
     //Funkcionalita
     ArrayList<Zamestnanec> listZamestnancov = new ArrayList<Zamestnanec>();
 
@@ -19,6 +22,7 @@ public class ZamestnanciModel {
 
     public ArrayList<Zamestnanec> inicializaciaZamestnancov(){
 
+        sklad.VytvorenieArrayaProduktov();
 
         listZamestnancov.add(new Skladnik("Peter Gerat",12,0,1,0));
         listZamestnancov.add(new Manazer("Roman Osadsky",12,2,3,1));
@@ -26,6 +30,8 @@ public class ZamestnanciModel {
         return (listZamestnancov);
 
     }
+
+
 
     public void pridanieZamestnanca(String meno, int vek, boolean checkSkladnik, boolean checkManager, boolean checkPekar ){
 

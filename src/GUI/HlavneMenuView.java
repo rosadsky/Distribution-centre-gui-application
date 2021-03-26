@@ -14,7 +14,7 @@ public class HlavneMenuView {
 
     Label textLabel = new Label();
     Button btnPridatZamestnanca = new Button("PRIDAŤ ZAMESTNANCA");
-    Button btnSpravaZamestnanca = new Button("PRIDAŤ ZAMESTNANCA");
+    Button btnSpravaZamestnanca = new Button("SPRAVA ZAMESTNANCOV");
 
 
 

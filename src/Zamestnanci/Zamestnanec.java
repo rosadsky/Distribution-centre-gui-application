@@ -9,4 +9,15 @@ public class Zamestnanec extends Osoba {
         this.oddpracovanychhodin = oddpracovanychhodin;
         this.platovaTrieda = platovaTrieda;
     }
+
+    /* ------ POLYMORFIZMUS ------ */
+
+    public double vypocetVyplaty(int vek, double oddpracovanychhodin, int platovaTrieda){
+        double vyplata;
+
+        vyplata = ((10)*platovaTrieda)*oddpracovanychhodin+(vek*platovaTrieda);
+
+        return vyplata;
+    }
+
 }

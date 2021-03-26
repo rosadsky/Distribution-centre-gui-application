@@ -8,4 +8,14 @@ public class Manazer extends Zamestnanec {
         this.pocetBonusovychBodov = pocetBonusovychBodov;
         System.out.println("Vytvoril som manazera " + meno + "...");
     }
+
+
+
+    public double vypocetVyplaty(int vek, double oddpracovanychhodin, int platovaTrieda,int pocetBonusovychBodov) {
+       double vyplata;
+
+        vyplata = ((10)*platovaTrieda)*oddpracovanychhodin+(vek*platovaTrieda+pocetBonusovychBodov);
+
+        return vyplata;
+    }
 }
