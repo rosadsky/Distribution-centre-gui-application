@@ -16,13 +16,9 @@ public class HlavneMenuView {
     Button btnPridatZamestnanca = new Button("PRIDAŤ ZAMESTNANCA");
     Button btnSpravaZamestnanca = new Button("SPRAVA ZAMESTNANCOV");
 
-
-
-
-
     public HlavneMenuView() {
 
-        textLabel.setText("HLAVNE MENU ");
+        //textLabel.setText("HLAVNE MENU ");
 
         VBox hlavneMenu = new VBox(5);
 

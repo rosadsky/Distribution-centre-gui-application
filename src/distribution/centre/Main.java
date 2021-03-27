@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 
 
-
-
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -81,14 +79,15 @@ public class Main extends Application {
         Stage window = primaryStage;
         Stage okno;
 
-        SpravaZamestnancovView spravaZamestnancovView = new SpravaZamestnancovView();
-        SpravaZamestnancvoModel spravaZamestnancvoModel = new SpravaZamestnancvoModel();
-        SpravaZamestnancovController spravaZamestnancovController = new SpravaZamestnancovController(spravaZamestnancovView,spravaZamestnancvoModel);
+
 
         ZamestnanciView zamestnanciView = new ZamestnanciView();
         ZamestnanciModel zamestnanciModel = new ZamestnanciModel();
         ZamestnanciController zamestnanciController = new ZamestnanciController(zamestnanciView,zamestnanciModel);
 
+        SpravaZamestnancovView spravaZamestnancovView = new SpravaZamestnancovView();
+        SpravaZamestnancvoModel spravaZamestnancvoModel = new SpravaZamestnancvoModel();
+        SpravaZamestnancovController spravaZamestnancovController = new SpravaZamestnancovController(spravaZamestnancovView,spravaZamestnancvoModel,zamestnanciModel);
 
         HlavneMenuView hlavneMenuView = new HlavneMenuView();
         HlavneMenuModel hlavneMenuModel = new HlavneMenuModel();

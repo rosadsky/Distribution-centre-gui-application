@@ -9,5 +9,11 @@ public class Osoba {
         this.vek = vek;
     }
 
+    public String getMeno() {
+        return meno;
+    }
 
+    public int getVek() {
+        return vek;
+    }
 }
