@@ -1,11 +1,20 @@
 package Sklad;
 
+import Produkt.Potravina;
+
+import java.util.ArrayList;
+
 public class Chladny extends Sklad {
     private double teplota;
 
-    public Chladny(int pocetZamestancov, int pocetVozikov, double teplota) {
-        super(pocetZamestancov, pocetVozikov);
+
+    public Chladny(String nazovFirmy, int numberOfProducts, int pocetZamestancov, int pocetVozikov, double teplota) {
+        super(nazovFirmy, numberOfProducts, pocetZamestancov, pocetVozikov);
         this.teplota = teplota;
-        System.out.println("Vytvoril som Chladny sklad...");
     }
+
+
+    ArrayList<Potravina> listProduktovChladnySklad = new ArrayList<Potravina>();
+
+
 }
