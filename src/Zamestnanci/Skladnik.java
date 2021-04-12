@@ -12,12 +12,13 @@ public class Skladnik extends Zamestnanec {
 
     /* ------ POLYMORFIZMUS ------ */
 
-    public double vypocetVyplaty(int vek, double oddpracovanychhodin, int platovaTrieda,double rychlostPrace) {
+    public double vypocetVyplaty(int vek, double oddpracovanychhodin, int platovaTrieda) {
         double vyplata;
 
 
-        vyplata = ((10)*platovaTrieda)*oddpracovanychhodin+(vek*platovaTrieda+rychlostPrace);
+        vyplata = ((10)*platovaTrieda)*oddpracovanychhodin+(vek*platovaTrieda);
 
+        System.out.println("Vyplata skladnika...");
 
         return  vyplata;
     }

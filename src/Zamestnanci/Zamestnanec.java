@@ -1,6 +1,6 @@
 package Zamestnanci;
 
-public class Zamestnanec extends Osoba {
+public abstract class Zamestnanec extends Osoba {
     private double oddpracovanychhodin;
     private int platovaTrieda;
 
@@ -12,12 +12,13 @@ public class Zamestnanec extends Osoba {
 
     /* ------ POLYMORFIZMUS ------ */
 
-    public double vypocetVyplaty(int vek, double oddpracovanychhodin, int platovaTrieda){
-        double vyplata;
+    public abstract double vypocetVyplaty(int vek, double oddpracovanychhodin, int platovaTrieda);
 
-        vyplata = ((10)*platovaTrieda)*oddpracovanychhodin+(vek*platovaTrieda);
-
-        return vyplata;
+    public double getOddpracovanychhodin() {
+        return oddpracovanychhodin;
     }
 
+    public int getPlatovaTrieda() {
+        return platovaTrieda;
+    }
 }

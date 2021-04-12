@@ -14,5 +14,22 @@ public class SpravaZamestnancovController {
 
         spravaZamestnancovView.getTable().setItems(zamestnanciModel.getListObservableZamestnancov());
 
+
+        spravaZamestnancovView.getAddButton().setOnAction(e ->{
+/*
+            allProducts = table.getItems();
+            productSelected = table.getSelectionModel().getSelectedItems();
+            productSelected.forEach(allProducts::remove);
+        */
+
+           // zamestnanciModel.getAllProducts() = spravaZamestnancovView.getTable().getSelectionModel().getSelectedItems();
+            //zamestnanciModel.getProductSelected() = spravaZamestnancovView.getTable().getSelectionModel().getSelectedItems();
+            zamestnanciModel.getProductSelected().forEach(zamestnanciModel.getAllProducts()::remove);
+
+
+
+                }
+                );
+
     }
 }

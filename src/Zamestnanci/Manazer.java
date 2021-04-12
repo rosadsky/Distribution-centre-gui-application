@@ -11,10 +11,11 @@ public class Manazer extends Zamestnanec {
 
 
 
-    public double vypocetVyplaty(int vek, double oddpracovanychhodin, int platovaTrieda,int pocetBonusovychBodov) {
+    public double vypocetVyplaty(int vek, double oddpracovanychhodin, int platovaTrieda) {
        double vyplata;
 
-        vyplata = ((10)*platovaTrieda)*oddpracovanychhodin+(vek*platovaTrieda+pocetBonusovychBodov);
+        vyplata = ((10)*platovaTrieda)*oddpracovanychhodin+(vek*platovaTrieda);
+        System.out.println("Vyplata manažéra...");
 
         return vyplata;
     }
