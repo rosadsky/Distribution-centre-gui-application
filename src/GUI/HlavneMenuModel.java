@@ -14,13 +14,19 @@ public class HlavneMenuModel {
      ArrayList<Dodavatel> listDodavatelov = new ArrayList<Dodavatel>();
      ArrayList<Potravina> listProduktov = new ArrayList<Potravina>();
 
+     Sklad hlavnysklad;
+
+     public Sklad vytvorenieSkladu(){
+         Sklad hlavnysklad = new Sklad(" Hlavny sklad", 0,3,30,220000, 10000);
+
+         return hlavnysklad;
+     }
+
+
      public HlavneMenuModel(){
-         Sklad centralnySklad = new Sklad(" Hlavny sklad", 0,3,30,220000);
+         Sklad sklad = vytvorenieSkladu();
          DefaultDistributor();
-         StavSkladu();
-
-
-
+         StavSkladu(sklad);
 
      }
 
@@ -41,7 +47,7 @@ public class HlavneMenuModel {
          listProduktov.add(new Potravina("Masozavod namestovo s.r.o",200,"Parky","mrazeny",16));
      }
 
-     private void StavSkladu(){
+     private void StavSkladu(Sklad hlavnysklad){
          int pocetProduktovTotal = 0;
          for(Potravina produkt : listProduktov) {
 
@@ -51,11 +57,9 @@ public class HlavneMenuModel {
 
          }
 
-         System.out.println("POCET PRODUKTOV V SKLADE: " + pocetProduktovTotal);
+         System.out.println("POCET PRODUKTOV V SKLADE: " + pocetProduktovTotal +" / "+ hlavnysklad.getKapacita());
 
      }
-
-
 
 
 }

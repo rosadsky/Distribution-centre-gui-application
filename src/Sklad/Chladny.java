@@ -8,10 +8,9 @@ public class Chladny extends Sklad {
     private double teplota;
     ArrayList<Potravina> listProduktovChladnySklad = new ArrayList<Potravina>();
 
-    public Chladny(String nazovFirmy, int numberOfProducts, int pocetZamestancov, int pocetVozikov, int stavBakovehoUctu, double teplota, ArrayList<Potravina> listProduktovChladnySklad) {
-        super(nazovFirmy, numberOfProducts, pocetZamestancov, pocetVozikov, stavBakovehoUctu);
+    public Chladny(String nazovFirmy, int numberOfProducts, int pocetZamestancov, int pocetVozikov, int stavBakovehoUctu, int kapacita, double teplota) {
+        super(nazovFirmy, numberOfProducts, pocetZamestancov, pocetVozikov, stavBakovehoUctu, kapacita);
         this.teplota = teplota;
-        this.listProduktovChladnySklad = listProduktovChladnySklad;
     }
 
     private void filtrovanieProduktov(ArrayList<Potravina> distributor){
