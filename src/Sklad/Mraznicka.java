@@ -1,8 +1,11 @@
 package Sklad;
 
+import Produkt.Potravina;
+
+import java.util.ArrayList;
+
 public class Mraznicka extends Sklad {
     private int pocetBoxov;
-
 
     public Mraznicka(String nazovFirmy, int numberOfProducts, int pocetZamestancov, int pocetVozikov, int stavBakovehoUctu, int kapacita, int pocetBoxov) {
         super(nazovFirmy, numberOfProducts, pocetZamestancov, pocetVozikov, stavBakovehoUctu, kapacita);

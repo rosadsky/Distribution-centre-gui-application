@@ -13,7 +13,10 @@ public class Chladny extends Sklad {
         this.teplota = teplota;
     }
 
-    private void filtrovanieProduktov(ArrayList<Potravina> distributor){
+    public void filtrovanieProduktov(ArrayList<Potravina> distributor){
+
+
+
 
     }
 

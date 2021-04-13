@@ -2,6 +2,9 @@ package GUI;
 
 import Produkt.Potravina;
 import Sklad.Sklad;
+import Sklad.Chladny;
+import Sklad.Mraznicka;
+import Sklad.Teply;
 import distribution.centre.Produkt;
 import distribution.centre.Dodavatel;
 
@@ -9,22 +12,37 @@ import java.util.ArrayList;
 
 public class HlavneMenuModel {
 
-
-     ArrayList<Produkt> listDistributorov = new ArrayList<Produkt>();
-     ArrayList<Dodavatel> listDodavatelov = new ArrayList<Dodavatel>();
      ArrayList<Potravina> listProduktov = new ArrayList<Potravina>();
-
-     Sklad hlavnysklad;
 
      public Sklad vytvorenieSkladu(){
          Sklad hlavnysklad = new Sklad(" Hlavny sklad", 0,3,30,220000, 10000);
-
          return hlavnysklad;
      }
+
+     public Chladny vytvorenieChladnehoSkladu(){
+         Chladny chladnysklad = new Chladny("Chladny sklad",0,1,2,1000,200,0);
+         return chladnysklad;
+     }
+    public Mraznicka vytvorenieMraznicky(){
+        Mraznicka mraznicka = new Mraznicka("Mraznicka",0,1,2,2000,200,4);
+        return mraznicka;
+    }
+
+    public Teply vytvorenieTeplehoSkladu(){
+        Teply mraznicka = new Teply("Mraznicka",0,1,2,2000,200,false);
+        return mraznicka;
+    }
+
+
+
 
 
      public HlavneMenuModel(){
          Sklad sklad = vytvorenieSkladu();
+         Chladny chladnySklad = vytvorenieChladnehoSkladu();
+         Mraznicka mraznicka = vytvorenieMraznicky();
+
+
          DefaultDistributor();
          StavSkladu(sklad);
 
@@ -50,14 +68,13 @@ public class HlavneMenuModel {
      private void StavSkladu(Sklad hlavnysklad){
          int pocetProduktovTotal = 0;
          for(Potravina produkt : listProduktov) {
-
-
              System.out.println(produkt.getNazovProduktu() + " QTY: " + produkt.getNumberOfProducts());
              pocetProduktovTotal += produkt.getNumberOfProducts();
 
          }
 
          System.out.println("POCET PRODUKTOV V SKLADE: " + pocetProduktovTotal +" / "+ hlavnysklad.getKapacita());
+         System.out.println("VOLNA KAPACITA: " + (hlavnysklad.getKapacita() - pocetProduktovTotal));
 
      }
 
