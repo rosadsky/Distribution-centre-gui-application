@@ -1,6 +1,7 @@
 package GUI;
 
 import Produkt.Potravina;
+import Sklad.Sklad;
 import distribution.centre.Produkt;
 import distribution.centre.Dodavatel;
 
@@ -14,7 +15,7 @@ public class HlavneMenuModel {
      ArrayList<Potravina> listProduktov = new ArrayList<Potravina>();
 
      public HlavneMenuModel(){
-
+         Sklad centralnySklad = new Sklad(" Hlavny sklad", 0,3,30,220000);
          DefaultDistributor();
          StavSkladu();
 

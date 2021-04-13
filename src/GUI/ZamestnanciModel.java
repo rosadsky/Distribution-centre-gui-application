@@ -13,9 +13,10 @@ import javafx.collections.ObservableList;
 import java.util.ArrayList;
 
 public class ZamestnanciModel {
-
     Zamestnanec zamestnanec;
     Sklad sklad;
+
+
     //Funkcionalita
    // ArrayList<Zamestnanec> listZamestnancov = new ArrayList<Zamestnanec>();
 

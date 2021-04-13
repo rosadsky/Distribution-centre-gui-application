@@ -3,8 +3,8 @@ package Sklad;
 public class Teply extends Sklad {
     private boolean expressLine;
 
-    public Teply(int pocetZamestancov, int pocetVozikov, boolean expressLine) {
-        super(pocetZamestancov, pocetVozikov);
+    public Teply(String nazovFirmy, int numberOfProducts, int pocetZamestancov, int pocetVozikov, int stavBakovehoUctu, boolean expressLine) {
+        super(nazovFirmy, numberOfProducts, pocetZamestancov, pocetVozikov, stavBakovehoUctu);
         this.expressLine = expressLine;
     }
 

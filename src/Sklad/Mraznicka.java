@@ -3,9 +3,9 @@ package Sklad;
 public class Mraznicka extends Sklad {
     private int pocetBoxov;
 
-    public Mraznicka(int pocetZamestancov, int pocetVozikov, int pocetBoxov) {
-        super(pocetZamestancov, pocetVozikov);
+
+    public Mraznicka(String nazovFirmy, int numberOfProducts, int pocetZamestancov, int pocetVozikov, int stavBakovehoUctu, int pocetBoxov) {
+        super(nazovFirmy, numberOfProducts, pocetZamestancov, pocetVozikov, stavBakovehoUctu);
         this.pocetBoxov = pocetBoxov;
-        System.out.println("Vytvoril som Mrazničku sklad...");
     }
 }
