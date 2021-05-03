@@ -2,11 +2,6 @@ package GUI;
 
 import Produkt.Potravina;
 import Sklad.Sklad;
-import Sklad.Chladny;
-import Sklad.Mraznicka;
-import Sklad.Teply;
-import distribution.centre.Produkt;
-import distribution.centre.Dodavatel;
 
 import java.util.ArrayList;
 
@@ -19,19 +14,7 @@ public class HlavneMenuModel {
          return hlavnysklad;
      }
 
-     public Chladny vytvorenieChladnehoSkladu(){
-         Chladny chladnysklad = new Chladny("Chladny sklad",0,1,2,1000,200,0);
-         return chladnysklad;
-     }
-    public Mraznicka vytvorenieMraznicky(){
-        Mraznicka mraznicka = new Mraznicka("Mraznicka",0,1,2,2000,200,4);
-        return mraznicka;
-    }
 
-    public Teply vytvorenieTeplehoSkladu(){
-        Teply mraznicka = new Teply("Mraznicka",0,1,2,2000,200,false);
-        return mraznicka;
-    }
 
 
 
@@ -39,8 +22,7 @@ public class HlavneMenuModel {
 
      public HlavneMenuModel(){
          Sklad sklad = vytvorenieSkladu();
-         Chladny chladnySklad = vytvorenieChladnehoSkladu();
-         Mraznicka mraznicka = vytvorenieMraznicky();
+
 
 
          DefaultDistributor();

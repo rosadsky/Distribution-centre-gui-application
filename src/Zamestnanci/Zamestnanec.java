@@ -21,4 +21,12 @@ public abstract class Zamestnanec extends Osoba {
     public int getPlatovaTrieda() {
         return platovaTrieda;
     }
+
+    public void setOddpracovanychhodin(double oddpracovanychhodin) {
+        this.oddpracovanychhodin = oddpracovanychhodin;
+    }
+
+    public void setPlatovaTrieda(int platovaTrieda) {
+        this.platovaTrieda = platovaTrieda;
+    }
 }

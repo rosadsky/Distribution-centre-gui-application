@@ -15,6 +15,7 @@ public class HlavneMenuView {
     Label textLabel = new Label();
     Button btnPridatZamestnanca = new Button("PRIDAŤ ZAMESTNANCA");
     Button btnSpravaZamestnanca = new Button("SPRAVA ZAMESTNANCOV");
+    Button btnSimulatorDni = new Button("DEŇ +1");
 
     public HlavneMenuView() {
 
@@ -24,7 +25,7 @@ public class HlavneMenuView {
 
         hlavneMenu.setPadding(new Insets(5, 400, 10, 5));
         hlavneMenu.getChildren().addAll(textLabel);
-        hlavneMenu.getChildren().addAll(btnPridatZamestnanca,btnSpravaZamestnanca);
+        hlavneMenu.getChildren().addAll(btnSimulatorDni,btnPridatZamestnanca,btnSpravaZamestnanca);
 
         scenaHlavneMenu = new Scene(hlavneMenu, 600, 300);
 
@@ -38,6 +39,9 @@ public class HlavneMenuView {
         return textLabel;
     }
 
+    public Button getBtnSimulatorDni() {
+        return btnSimulatorDni;
+    }
 
     public Button getBtnPridatZamestnanca() {
         return btnPridatZamestnanca;

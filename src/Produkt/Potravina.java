@@ -1,7 +1,5 @@
 package Produkt;
 
-import distribution.centre.Produkt;
-
 public class Potravina extends Produkt {
     private String nazovProduktu;
     private String typProduktu;

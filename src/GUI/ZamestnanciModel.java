@@ -15,6 +15,8 @@ import java.util.ArrayList;
 public class ZamestnanciModel {
     Zamestnanec zamestnanec;
     Sklad sklad;
+    private int den = 1;
+    private int mesiac = 1;
 
 
     //Funkcionalita
@@ -29,14 +31,43 @@ public class ZamestnanciModel {
         listObservableZamestnancov.add(new Pekar("Jozef Pidik",43,120,2,1));
     }
 
-    public ZamestnanciModel() {
-        DefaultZamestnanci();
+    public void stavDni(){
+        den++;
+        if(den == 31){
+            den = 1;
+            mesiac++;
+        }
+        if(mesiac == 13)
+            mesiac = 1;
 
-        for(Zamestnanec zamTmp : listObservableZamestnancov) {
+        System.out.println("DEŇ: " + den + "MESIAC: " + mesiac);
 
-            System.out.println(zamTmp.vypocetVyplaty(zamTmp.getVek(),zamTmp.getOddpracovanychhodin(),zamTmp.getPlatovaTrieda()));
+        if(den == 30){
+
+            for(Zamestnanec zamTmp : listObservableZamestnancov) {
+
+
+
+
+                zamTmp.setOddpracovanychhodin(0);
+
+
+
+                System.out.println(zamTmp.vypocetVyplaty(zamTmp.getVek(),zamTmp.getOddpracovanychhodin(),zamTmp.getPlatovaTrieda()));
+
+            }
 
         }
+
+
+
+
+
+
+    }
+
+    public ZamestnanciModel() {
+        DefaultZamestnanci();
     }
 
 

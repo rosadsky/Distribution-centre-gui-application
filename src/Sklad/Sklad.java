@@ -1,12 +1,7 @@
 package Sklad;
 
 
-import Zamestnanci.*;
-import distribution.centre.Produkt;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
-import java.util.ArrayList;
+import Produkt.Produkt;
 
 
 public class Sklad extends Produkt {
@@ -21,6 +16,8 @@ public class Sklad extends Produkt {
         this.pocetVozikov = pocetVozikov;
         this.stavBakovehoUctu = stavBakovehoUctu;
         this.kapacita = kapacita;
+
+        System.out.println("Nazov: " +  nazovFirmy +" Pocet produktov: " + numberOfProducts +" Zamestnanci: " + pocetZamestancov +" Vozíky: " + pocetVozikov +" KAPITAL: " + stavBakovehoUctu +" Kapacita: " + kapacita);
     }
 
     public int getPocetZamestancov() {

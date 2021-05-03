@@ -79,7 +79,7 @@ public class SpravaZamestnancovView {
         HBox hBox = new HBox();
         hBox.setPadding(new Insets(10,10,10,10));
         hBox.setSpacing(10);
-        hBox.getChildren().addAll(nameInput,priceInput,quantityInput,addButton,deleteButton);
+       // hBox.getChildren().addAll(nameInput,priceInput,quantityInput,addButton,deleteButton);
 
         spravaMenu.setPadding(new Insets(5, 100, 10, 5));
         spravaMenu.getChildren().addAll(textLabel,table,hBox);

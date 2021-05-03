@@ -1,4 +1,4 @@
-package distribution.centre;
+package Produkt;
 
 public class Produkt {
     String nazovFirmy;
