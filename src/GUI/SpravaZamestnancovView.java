@@ -15,7 +15,6 @@ public class SpravaZamestnancovView {
 
     TableView<Zamestnanec> table;
     Scene scenaSpravaZamestnacov;
-    ZamestnanciModel zamestnanciModel;
     TextField nameInput, priceInput, quantityInput;
     Button addButton,deleteButton;
 
@@ -115,9 +114,6 @@ public class SpravaZamestnancovView {
         return deleteButton;
     }
 
-    public ZamestnanciModel getZamestnanciModel() {
-        return zamestnanciModel;
-    }
 
 
 }

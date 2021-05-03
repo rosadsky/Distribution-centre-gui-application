@@ -1,4 +1,5 @@
 package Zamestnanci;
+import Sklad.Sklad;
 
 public abstract class Zamestnanec extends Osoba {
     private double oddpracovanychhodin;
@@ -12,7 +13,7 @@ public abstract class Zamestnanec extends Osoba {
 
     /* ------ POLYMORFIZMUS ------ */
 
-    public abstract double vypocetVyplaty(int vek, double oddpracovanychhodin, int platovaTrieda);
+    public abstract double vypocetVyplaty(int vek, double oddpracovanychhodin, int platovaTrieda, Sklad sklad);
 
     public double getOddpracovanychhodin() {
         return oddpracovanychhodin;

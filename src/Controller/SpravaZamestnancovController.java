@@ -1,18 +1,15 @@
 package Controller;
 
-import GUI.SpravaZamestnancovView;
-import GUI.SpravaZamestnancvoModel;
-import GUI.ZamestnanciModel;
-import GUI.ZamestnanciView;
+import GUI.*;
 
 public class SpravaZamestnancovController {
 
     private SpravaZamestnancovView spravaZamestnancovView;
-    private SpravaZamestnancvoModel spravaZamestnancvoModel;
+    //private SpravaZamestnancvoModel spravaZamestnancvoModel;
 
-    public SpravaZamestnancovController(SpravaZamestnancovView spravaZamestnancovView, SpravaZamestnancvoModel spravaZamestnancvoModel, ZamestnanciModel zamestnanciModel) {
+    public SpravaZamestnancovController(SpravaZamestnancovView spravaZamestnancovView, HlavneMenuModel hlavneMenuModel) {
 
-        spravaZamestnancovView.getTable().setItems(zamestnanciModel.getListObservableZamestnancov());
+        spravaZamestnancovView.getTable().setItems(hlavneMenuModel.getListObservableZamestnancov());
 
 
         spravaZamestnancovView.getAddButton().setOnAction(e ->{
@@ -22,9 +19,9 @@ public class SpravaZamestnancovController {
             productSelected.forEach(allProducts::remove);
         */
 
-           // zamestnanciModel.getAllProducts() = spravaZamestnancovView.getTable().getSelectionModel().getSelectedItems();
-            //zamestnanciModel.getProductSelected() = spravaZamestnancovView.getTable().getSelectionModel().getSelectedItems();
-            zamestnanciModel.getProductSelected().forEach(zamestnanciModel.getAllProducts()::remove);
+           // hlavneMenuModel.getAllProducts() = spravaZamestnancovView.getTable().getSelectionModel().getSelectedItems();
+            //hlavneMenuModel.getProductSelected() = spravaZamestnancovView.getTable().getSelectionModel().getSelectedItems();
+            hlavneMenuModel.getProductSelected().forEach(hlavneMenuModel.getAllProducts()::remove);
 
 
 

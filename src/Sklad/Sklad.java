@@ -7,7 +7,7 @@ import Produkt.Produkt;
 public class Sklad extends Produkt {
     private int pocetZamestancov;
     private int pocetVozikov;
-    private int stavBakovehoUctu;
+    private double stavBakovehoUctu;
     private int kapacita;
 
     public Sklad(String nazovFirmy, int numberOfProducts, int pocetZamestancov, int pocetVozikov, int stavBakovehoUctu, int kapacita) {
@@ -36,11 +36,11 @@ public class Sklad extends Produkt {
         this.pocetVozikov = pocetVozikov;
     }
 
-    public int getStavBakovehoUctu() {
+    public double getStavBakovehoUctu() {
         return stavBakovehoUctu;
     }
 
-    public void setStavBakovehoUctu(int stavBakovehoUctu) {
+    public void setStavBakovehoUctu(double stavBakovehoUctu) {
         this.stavBakovehoUctu = stavBakovehoUctu;
     }
 
@@ -51,4 +51,6 @@ public class Sklad extends Produkt {
     public void setKapacita(int kapacita) {
         this.kapacita = kapacita;
     }
+
+
 }

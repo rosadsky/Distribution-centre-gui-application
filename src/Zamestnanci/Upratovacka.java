@@ -1,5 +1,5 @@
 package Zamestnanci;
-
+import Sklad.Sklad;
 public class Upratovacka extends Zamestnanec {
 
 
@@ -8,7 +8,7 @@ public class Upratovacka extends Zamestnanec {
     }
 
     @Override
-    public double vypocetVyplaty(int vek, double oddpracovanychhodin, int platovaTrieda) {
+    public double vypocetVyplaty(int vek, double oddpracovanychhodin, int platovaTrieda,Sklad sklad) {
         return 0;
     }
 }

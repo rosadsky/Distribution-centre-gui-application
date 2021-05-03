@@ -1,5 +1,5 @@
 package Zamestnanci;
-
+import Sklad.Sklad;
 public class Skladnik extends Zamestnanec {
     private double rychlostPrace;
 
@@ -12,7 +12,7 @@ public class Skladnik extends Zamestnanec {
 
     /* ------ POLYMORFIZMUS ------ */
 
-    public double vypocetVyplaty(int vek, double oddpracovanychhodin, int platovaTrieda) {
+    public double vypocetVyplaty(int vek, double oddpracovanychhodin, int platovaTrieda, Sklad sklad) {
         double vyplata;
 
 

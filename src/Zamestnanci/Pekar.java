@@ -1,4 +1,5 @@
 package Zamestnanci;
+import Sklad.Sklad;
 
 public class Pekar extends Zamestnanec {
     private double pocetChlebovZaHodinu;
@@ -10,7 +11,7 @@ public class Pekar extends Zamestnanec {
     }
 
 
-    public double vypocetVyplaty(int vek, double oddpracovanychhodin, int platovaTrieda) {
+    public double vypocetVyplaty(int vek, double oddpracovanychhodin, int platovaTrieda,Sklad sklad) {
         double vyplata;
 
         vyplata = ((10)*platovaTrieda)*oddpracovanychhodin+(vek*platovaTrieda);
