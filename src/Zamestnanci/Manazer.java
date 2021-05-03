@@ -29,6 +29,9 @@ public class Manazer extends Zamestnanec {
         return vyplata;
     }
 
+
+
+
     public int getPocetBonusovychBodov() {
         return pocetBonusovychBodov;
     }

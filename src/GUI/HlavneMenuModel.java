@@ -3,6 +3,7 @@ package GUI;
 import Produkt.Potravina;
 import Sklad.Sklad;
 import Zamestnanci.*;
+import distribution.centre.Zakaznik;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -14,19 +15,57 @@ public class HlavneMenuModel {
      ObservableList<Zamestnanec> listObservableZamestnancov = FXCollections.observableArrayList();
      ObservableList<Zamestnanec> productSelected = null, allProducts = null;
      ArrayList<Sklad> listSkladov = new ArrayList<Sklad>();
+     ArrayList<Zakaznik> listZakaznikov = new ArrayList<Zakaznik>();
     private int den = 1;
     private int mesiac = 1;
     private int pocetPotravin = 0;
+    private int pocetZakaznikov = 2;
 
 
 
     public void vytvorenieSkladu(){
         listSkladov.add(new Sklad(" Centralny sklad", 0,3,30,220000, 10000));
+    }
 
-     }
+    public void vytvorenieZakaznikov(){
+
+        ArrayList<Potravina> listPotravinZakaznik = new ArrayList<Potravina>();
+
+        listPotravinZakaznik.add(new Potravina("Mliekaren s.r.o",200,"Syr Niva","mliecne",4));
+        listPotravinZakaznik.add(new Potravina("Mliekaren s.r.o",900,"Mlieko polotucne","mliecne",4));
+        listPotravinZakaznik.add(new Potravina("Food holding s.r.o",300,"Horalka","trvanlivy",16));
+        listPotravinZakaznik.add(new Potravina("Food holding s.r.o",500,"Budis","trvanlivy",16));
+        Zakaznik tesco = new Zakaznik("Tesco", 4, 19,listPotravinZakaznik);
+        listZakaznikov.add(tesco);
+
+        ArrayList<Potravina> listPotravinZakaznik_1 = new ArrayList<Potravina>();
+
+        listPotravinZakaznik_1.add(new Potravina("Food holding s.r.o",534,"Budis","trvanlivy",16));
+        listPotravinZakaznik_1.add(new Potravina("Masozavod namestovo s.r.o",923,"Bravcove maso","mrazeny",16));
+        listPotravinZakaznik_1.add(new Potravina("Masozavod namestovo s.r.o",244,"Parky","mrazeny",16));
+
+        Zakaznik lidl = new Zakaznik("Lidl", 3,20,listPotravinZakaznik_1);
+        listZakaznikov.add(lidl);
+
+    }
+
+    public void stavSkladu(){
+
+        for( Zakaznik zakTmp : listZakaznikov){
+            System.out.println("------------------------------------");
+            System.out.println("SKLAD: " + zakTmp.getNazovZakaznika() );
+            for (int i = 0; i < zakTmp.getNumberOfProducts(); i++){
+                System.out.println("PRODUKT: " + zakTmp.getListPotravin().get(i).getNazovProduktu() + " NA DODANIE: " + zakTmp.getListPotravin().get(i).getNumberOfProducts());
+            }
+
+        }
+    }
+
+
 
      public HlavneMenuModel(){
          vytvorenieSkladu();
+         vytvorenieZakaznikov();
          DefaultDistributor();
          DefaultZamestnanci();
          StavSkladu(listSkladov.get(0));
@@ -52,16 +91,32 @@ public class HlavneMenuModel {
 
         if (den == 3)
             vypocitavanieVyplatZamestnancov();
+            stavSkladu();
 
+        if (den == 19 || den == 20){
+            int index;
+            if (den == 19)
+                index = 0;
+            else
+                index= 1;
+
+            for(Potravina potrTmp : listZakaznikov.get(index).getListPotravin()){
+
+                if (potrTmp.getNumberOfProducts() > 0){
+                    System.out.println("NESPLNENÉ OBJEDNÁVKY PENALIZÁCIA 3000 €");
+                    listSkladov.get(0).setStavBakovehoUctu(listSkladov.get(0).getStavBakovehoUctu() - 3000);
+                } else {
+                    System.out.println("Vsetky objednavky splnené zarobené 1000 € ");
+                    listSkladov.get(0).setStavBakovehoUctu(listSkladov.get(0).getStavBakovehoUctu() - 1000);
+                }
+
+            }
+
+        }
 
         // Vykonavanie prace zamestnacov
         vykonavaniePraceZamestnanca();
-
-
     }
-
-
-
 
     public void vypocitavanieVyplatZamestnancov(){
         for (Zamestnanec zamTmp : listObservableZamestnancov) {
@@ -91,10 +146,13 @@ public class HlavneMenuModel {
 
             if (zamTmp instanceof Skladnik) {
 
-                randomNum = rand.nextInt((200 - 50) + 1) + 50;
+                randomNum = rand.nextInt((100 - 50) + 1) + 50;
 
                 if (randomNum > ((Skladnik) zamTmp).getproduktovZaHodinu()) {
                     ((Skladnik) zamTmp).setproduktovZaHodinu(randomNum);
+
+
+
 
                     System.out.println("zvýšenie rýchlosti práce na " + randomNum);
                 } else {
@@ -116,6 +174,15 @@ public class HlavneMenuModel {
 
             }
 
+            if (zamTmp instanceof Manazer){
+                if(pracaManazera()){
+                    ((Manazer) zamTmp).setPocetBonusovychBodov(((Manazer) zamTmp).getPocetBonusovychBodov()+1);
+                    System.out.println("VYKONAL OBJEDNAVKU ! ");
+                } else {
+                    System.out.println("NIČ NEVYKONAL");
+                }
+            }
+
 
 
         }
@@ -127,13 +194,45 @@ public class HlavneMenuModel {
         for (int i = 0; i < pocetHodin; i++){
 
             int randomNum = rand.nextInt((pocetPotravin-1 - 1) + 1);
-            System.out.println("INDEX: " + randomNum);
+
             if (pocetPotravin > randomNum){
-                listProduktov.get(randomNum).setNumberOfProducts(listProduktov.get(randomNum).getNumberOfProducts() - rychlost);
+
+                int randomZakaznik = rand.nextInt((10 - 1) + 1);
+                int index = 0;
+
+                if (randomZakaznik<5) {
+                    index = 0;
+                }else {
+                    index = 1;
+                }
+
+                int randomPotravina = rand.nextInt((listZakaznikov.get(index).getNumberOfProducts()-1 - 1) + 1);
+
+                int odobratieProduktov = listZakaznikov.get(index).getListPotravin().get(randomPotravina).getNumberOfProducts() - rychlost;
+
+                if (odobratieProduktov<0) {
+                    odobratieProduktov = 0;
+                }
+
+                listZakaznikov.get(index).getListPotravin().get(randomPotravina).setNumberOfProducts(odobratieProduktov);
+
+                for (Potravina produktTmp : listProduktov){
+                    if(produktTmp.getNazovProduktu().equals(listZakaznikov.get(index).getListPotravin().get(randomPotravina).getNazovProduktu())){
+
+                        int odobratieZoSkladu = produktTmp.getNumberOfProducts()-odobratieProduktov;
+                        if(odobratieZoSkladu < 0)
+                            produktTmp.setNumberOfProducts(0);
+                        else
+                            produktTmp.setNumberOfProducts(odobratieZoSkladu);
+                    }
+
+                }
+
+                System.out.println("VYBAVENA OBJEDNAVKA " + listZakaznikov.get(index).getListPotravin().get(randomPotravina).getNazovProduktu()+
+                        " POCET PO ODOBRANI: " + listZakaznikov.get(index).getListPotravin().get(randomPotravina).getNumberOfProducts()
+                );
 
 
-            } else {
-                listProduktov.get(randomNum).setNumberOfProducts(listProduktov.get(randomNum).getNumberOfProducts() - rychlost);
             }
 
         }
@@ -141,6 +240,27 @@ public class HlavneMenuModel {
 
     }
 
+    public boolean pracaManazera(){
+
+        Random rand = new Random();
+
+
+        for (Potravina potrTmp : listProduktov){
+
+            //System.out.print("["+potrTmp.getNumberOfProducts()+"]");
+            if (potrTmp.getNumberOfProducts() <= 0){
+                int pocetNaObjednanie = rand.nextInt((1000-200) + 200);
+                System.out.println("Nedostatok " + potrTmp.getNazovProduktu() + " objednavam [" + pocetNaObjednanie+ "]");
+                potrTmp.setNumberOfProducts(pocetNaObjednanie);
+                listSkladov.get(0).setStavBakovehoUctu(listSkladov.get(0).getStavBakovehoUctu() - pocetNaObjednanie );
+
+                return true;
+            }
+
+        }
+
+        return false;
+    }
 
     public void pridanieZamestnanca(String meno, int vek, boolean checkSkladnik, boolean checkManager, boolean checkPekar ){
 
@@ -176,20 +296,20 @@ public class HlavneMenuModel {
     }
 
      private void DefaultDistributor(){
-         listProduktov.add(new Potravina("Mliekaren s.r.o",152,"Mlieko plnotucne","mliecne",4));
-         listProduktov.add(new Potravina("Mliekaren s.r.o",600,"Jogurt","mliecne",4));
-         listProduktov.add(new Potravina("Mliekaren s.r.o",110,"Syr Niva","mliecne",4));
+         listProduktov.add(new Potravina("Mliekaren s.r.o",1520,"Mlieko plnotucne","mliecne",4));
+         listProduktov.add(new Potravina("Mliekaren s.r.o",6000,"Jogurt","mliecne",4));
+         listProduktov.add(new Potravina("Mliekaren s.r.o",1100,"Syr Niva","mliecne",4));
          listProduktov.add(new Potravina("Mliekaren s.r.o",345,"Mlieko polotucne","mliecne",4));
 
          listProduktov.add(new Potravina("Food holding s.r.o",1100,"Horalka","trvanlivy",16));
          listProduktov.add(new Potravina("Food holding s.r.o",1320,"Mila","trvanlivy",16));
          listProduktov.add(new Potravina("Food holding s.r.o",800,"Kofola","trvanlivy",16));
          listProduktov.add(new Potravina("Food holding s.r.o",420,"Budis","trvanlivy",16));
-         listProduktov.add(new Potravina("Food holding s.r.o",491,"Krušovice","trvanlivy",16));
+         listProduktov.add(new Potravina("Food holding s.r.o",1491,"Krušovice","trvanlivy",16));
 
          listProduktov.add(new Potravina("Masozavod namestovo s.r.o",491,"Kuracie prsia","mrazeny",16));
-         listProduktov.add(new Potravina("Masozavod namestovo s.r.o",200,"Bravcove maso","mrazeny",16));
-         listProduktov.add(new Potravina("Masozavod namestovo s.r.o",200,"Parky","mrazeny",16));
+         listProduktov.add(new Potravina("Masozavod namestovo s.r.o",900,"Bravcove maso","mrazeny",16));
+         listProduktov.add(new Potravina("Masozavod namestovo s.r.o",1100,"Parky","mrazeny",16));
 
          pocetPotravin = 13;
          System.out.println("Pocet druhov potravín v sklade: [" + pocetPotravin + "] ");
