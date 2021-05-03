@@ -2,21 +2,21 @@ package GUI;
 
 import Produkt.Potravina;
 import Sklad.Sklad;
-import Zamestnanci.Manazer;
-import Zamestnanci.Pekar;
-import Zamestnanci.Skladnik;
-import Zamestnanci.Zamestnanec;
+import Zamestnanci.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class HlavneMenuModel {
      ArrayList<Potravina> listProduktov = new ArrayList<Potravina>();
      ObservableList<Zamestnanec> listObservableZamestnancov = FXCollections.observableArrayList();
      ObservableList<Zamestnanec> productSelected = null, allProducts = null;
      ArrayList<Sklad> listSkladov = new ArrayList<Sklad>();
-
+    private int den = 1;
+    private int mesiac = 1;
+    private int pocetPotravin = 0;
 
 
 
@@ -33,62 +33,113 @@ public class HlavneMenuModel {
 
      }
 
-
-
-
-    private int den = 1;
-    private int mesiac = 1;
-
-
-    //Funkcionalita
-    // ArrayList<Zamestnanec> listZamestnancov = new ArrayList<Zamestnanec>();
-
-
     public void DefaultZamestnanci(){
         listObservableZamestnancov.add(new Skladnik("Peter Gerat",21,50,1,0));
         listObservableZamestnancov.add(new Manazer("Roman Osadsky",18,220,3,1));
         listObservableZamestnancov.add(new Pekar("Jozef Pidik",43,120,2,1));
     }
 
-    public void stavDni(){
+    public void stavDni() {
         den++;
-        if(den == 31){
+        if (den == 31) {
             den = 1;
             mesiac++;
         }
-        if(mesiac == 13)
+        if (mesiac == 13)
             mesiac = 1;
 
         System.out.println("DEŇ: " + den + "MESIAC: " + mesiac);
 
-        if(den == 3){
-
-            for(Zamestnanec zamTmp : listObservableZamestnancov) {
-
-                zamTmp.setOddpracovanychhodin(0);
-                //System.out.println(zamTmp.vypocetVyplaty(zamTmp.getVek(),zamTmp.getOddpracovanychhodin(),zamTmp.getPlatovaTrieda(),hlavneMenuModel.getHlavnySklad()));
-                //zamTmp.vypocetVyplaty(zamTmp.getVek(), zamestnanec.getOddpracovanychhodin(), zamestnanec.getPlatovaTrieda(), hlavneMenuModel.getHlavnySklad());
-
-                //hlavnySklad.getStavBakovehoUctu();
+        if (den == 3)
+            vypocitavanieVyplatZamestnancov();
 
 
+        // Vykonavanie prace zamestnacov
+        vykonavaniePraceZamestnanca();
 
 
-                zamTmp.vypocetVyplaty(zamTmp.getVek(), zamTmp.getOddpracovanychhodin(), zamTmp.getPlatovaTrieda(), listSkladov.get(0));
+    }
 
 
 
+
+    public void vypocitavanieVyplatZamestnancov(){
+        for (Zamestnanec zamTmp : listObservableZamestnancov) {
+
+            System.out.println("************************");
+            System.out.println("Odpracovane hodiny" + zamTmp.getOddpracovanychhodin());
+
+            zamTmp.vypocetVyplaty(zamTmp.getVek(), zamTmp.getOddpracovanychhodin(), zamTmp.getPlatovaTrieda(), listSkladov.get(0));
+
+            zamTmp.setOddpracovanychhodin(0);
+
+        }
+    }
+
+    public void vykonavaniePraceZamestnanca() {
+
+        for (Zamestnanec zamTmp : listObservableZamestnancov) {
+            Random rand = new Random();
+            int randomNum;
+            int randomHodina = rand.nextInt((12 - 1) + 1) + 1;
+
+            zamTmp.setOddpracovanychhodin(zamTmp.getOddpracovanychhodin() + randomHodina);
+
+            System.out.println(zamTmp.getMeno() + " dnes odpracoval: " + randomHodina + " TOTAL: (" + zamTmp.getOddpracovanychhodin() + ")");
+
+            /* ---------  explicitné použitie RTTI – napr. na zistenie typu objektu --------*/
+
+            if (zamTmp instanceof Skladnik) {
+
+                randomNum = rand.nextInt((200 - 50) + 1) + 50;
+
+                if (randomNum > ((Skladnik) zamTmp).getproduktovZaHodinu()) {
+                    ((Skladnik) zamTmp).setproduktovZaHodinu(randomNum);
+
+                    System.out.println("zvýšenie rýchlosti práce na " + randomNum);
+                } else {
+                    System.out.println("RYCHLOST PRACE: " + randomNum);
+                }
+
+                pickPotravina(randomNum,randomHodina);
+            }
+
+            if (zamTmp instanceof Pekar) {
+                randomNum = rand.nextInt((100 - 30) + 1) + 30;
+
+                if (randomNum > ((Pekar) zamTmp).getPocetChlebovZaHodinu()) {
+                    ((Pekar) zamTmp).setPocetChlebovZaHodinu(randomNum);
+                    System.out.println("zvýšenie rýchlosti pečenia na " + randomNum);
+                } else {
+                    System.out.println("RYCHLOST PEČENIA: " + randomNum);
+                }
+
+            }
+
+
+
+        }
+    }
+
+    public void pickPotravina(int rychlost, int pocetHodin){
+        Random rand = new Random();
+
+        for (int i = 0; i < pocetHodin; i++){
+
+            int randomNum = rand.nextInt((pocetPotravin-1 - 1) + 1);
+            System.out.println("INDEX: " + randomNum);
+            if (pocetPotravin > randomNum){
+                listProduktov.get(randomNum).setNumberOfProducts(listProduktov.get(randomNum).getNumberOfProducts() - rychlost);
+
+
+            } else {
+                listProduktov.get(randomNum).setNumberOfProducts(listProduktov.get(randomNum).getNumberOfProducts() - rychlost);
             }
 
         }
 
 
-
-
-
-
     }
-
 
 
     public void pridanieZamestnanca(String meno, int vek, boolean checkSkladnik, boolean checkManager, boolean checkPekar ){
@@ -139,6 +190,9 @@ public class HlavneMenuModel {
          listProduktov.add(new Potravina("Masozavod namestovo s.r.o",491,"Kuracie prsia","mrazeny",16));
          listProduktov.add(new Potravina("Masozavod namestovo s.r.o",200,"Bravcove maso","mrazeny",16));
          listProduktov.add(new Potravina("Masozavod namestovo s.r.o",200,"Parky","mrazeny",16));
+
+         pocetPotravin = 13;
+         System.out.println("Pocet druhov potravín v sklade: [" + pocetPotravin + "] ");
      }
 
      private void StavSkladu(Sklad hlavnysklad){

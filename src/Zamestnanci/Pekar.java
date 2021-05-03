@@ -15,7 +15,19 @@ public class Pekar extends Zamestnanec {
         double vyplata;
 
         vyplata = ((10)*platovaTrieda)*oddpracovanychhodin+(vek*platovaTrieda);
-        System.out.println("Vyplata pekára...");
+        System.out.println("VYPLATA - PEKAR :" + vyplata);
+
+
+        sklad.setStavBakovehoUctu(sklad.getStavBakovehoUctu() - vyplata);
+        System.out.println("STAV BANKOVEHO UCTU SKLADU: " + sklad.getStavBakovehoUctu());
         return vyplata;
+    }
+
+    public double getPocetChlebovZaHodinu() {
+        return pocetChlebovZaHodinu;
+    }
+
+    public void setPocetChlebovZaHodinu(double pocetChlebovZaHodinu) {
+        this.pocetChlebovZaHodinu = pocetChlebovZaHodinu;
     }
 }

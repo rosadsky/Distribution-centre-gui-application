@@ -18,13 +18,22 @@ public class Manazer extends Zamestnanec {
        double vyplata;
 
 
+        //System.out.println("(10)*" + platovaTrieda+ "*" + oddpracovanychhodin + "+"+ vek+ "*"+ platovaTrieda );
         vyplata = ((10)*platovaTrieda)*oddpracovanychhodin+(vek*platovaTrieda);
-        //sklad.setStavBakovehoUctu(sklad.getStavBakovehoUctu() - vyplata);
+        System.out.println("VYPLATA - MANAZER :" + vyplata);
 
-        //System.out.println("STAV" + sklad.getStavBakovehoUctu());
 
-        System.out.println("Vyplata manažéra...");
+        sklad.setStavBakovehoUctu(sklad.getStavBakovehoUctu() - vyplata);
+        System.out.println("STAV " + sklad.getStavBakovehoUctu());
 
         return vyplata;
+    }
+
+    public int getPocetBonusovychBodov() {
+        return pocetBonusovychBodov;
+    }
+
+    public void setPocetBonusovychBodov(int pocetBonusovychBodov) {
+        this.pocetBonusovychBodov = pocetBonusovychBodov;
     }
 }
