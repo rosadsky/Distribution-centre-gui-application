@@ -25,7 +25,7 @@ public class HlavneMenuModel {
 
 
     public void vytvorenieSkladu(){
-        listSkladov.add(new Sklad(" Centralny sklad", 0,3,30,220000, 10000));
+        listSkladov.add(new Sklad(" Centralny sklad", 0,3,30,220000, 15000));
     }
 
     public void vytvorenieZakaznikov(){
@@ -177,6 +177,11 @@ public class HlavneMenuModel {
             }
 
             if (zamTmp instanceof Manazer){
+                if (((Manazer) zamTmp).kontrolaSkladu(listSkladov,listProduktov))
+                    System.out.println("SKLAD JE AKURAT NAPLNENÝ");
+                else
+                    System.out.println("SKLAD JE PREPLNENÝ");
+
                 if(pracaManazera()){
                     ((Manazer) zamTmp).setPocetBonusovychBodov(((Manazer) zamTmp).getPocetBonusovychBodov()+1);
                     System.out.println("VYKONAL OBJEDNAVKU ! ");
@@ -255,6 +260,7 @@ public class HlavneMenuModel {
                 System.out.println("Nedostatok " + potrTmp.getNazovProduktu() + " objednavam [" + pocetNaObjednanie+ "]");
                 potrTmp.setNumberOfProducts(pocetNaObjednanie);
                 listSkladov.get(0).setStavBakovehoUctu(listSkladov.get(0).getStavBakovehoUctu() - pocetNaObjednanie );
+
 
                 return true;
             }
@@ -364,11 +370,12 @@ public class HlavneMenuModel {
 
      private void StavSkladu(Sklad hlavnysklad){
          int pocetProduktovTotal = 0;
-         for(Potravina produkt : listProduktov) {
-             System.out.println(produkt.getNazovProduktu() + " QTY: " + produkt.getNumberOfProducts());
-             pocetProduktovTotal += produkt.getNumberOfProducts();
 
-         }
+
+         //------------------- POUŽITIE LAMBDA VÝRAZU --------------------------
+
+         listProduktov.forEach( (n) -> { System.out.println(n.getNazovProduktu() + " QTY: " + n.getNumberOfProducts()); } );
+
 
          //System.out.println("POCET PRODUKTOV V SKLADE: " + pocetProduktovTotal +" / "+ hlavnysklad.getStavBakovehoUctu());
          //System.out.println("VOLNA KAPACITA: " + (hlavnysklad.getKapacita() - pocetProduktovTotal));

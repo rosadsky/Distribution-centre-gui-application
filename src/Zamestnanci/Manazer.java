@@ -2,7 +2,7 @@ package Zamestnanci;
 
 import Sklad.Sklad;
 
-public class Manazer extends Zamestnanec {
+public class Manazer extends Zamestnanec implements KontrolaPreplneniaSkladu {
     private int pocetBonusovychBodov;
 
 
