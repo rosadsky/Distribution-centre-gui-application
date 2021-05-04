@@ -1,6 +1,8 @@
 package Produkt;
 
-public class Produkt {
+import java.io.Serializable;
+
+public class Produkt implements Serializable {
     String nazovFirmy;
     int numberOfProducts;
 

@@ -37,6 +37,10 @@ public class HlavneMenuController {
             stage.show();
         });
 
+        hlavneMenuView.getBtnKoniec().setOnAction(e-> {
+            hlavneMenuModel.koniecProgramu();
+        });
+
 
 
     }

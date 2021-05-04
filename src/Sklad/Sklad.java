@@ -3,8 +3,10 @@ package Sklad;
 
 import Produkt.Produkt;
 
+import java.io.Serializable;
 
-public class Sklad extends Produkt {
+
+public class Sklad extends Produkt implements Serializable {
     private int pocetZamestancov;
     private int pocetVozikov;
     private double stavBakovehoUctu;

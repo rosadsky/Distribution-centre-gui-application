@@ -7,6 +7,7 @@ import distribution.centre.Zakaznik;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -64,6 +65,7 @@ public class HlavneMenuModel {
 
 
      public HlavneMenuModel(){
+         Deserializacia();
          vytvorenieSkladu();
          vytvorenieZakaznikov();
          DefaultDistributor();
@@ -294,6 +296,51 @@ public class HlavneMenuModel {
     public void setAllProducts(ObservableList<Zamestnanec> allProducts) {
         this.allProducts = allProducts;
     }
+
+
+    // serializácia
+
+    public void koniecProgramu(){
+
+        try{
+
+            FileOutputStream fout=new FileOutputStream("f.txt");
+            ObjectOutputStream out=new ObjectOutputStream(fout);
+
+
+            out.writeObject(listSkladov.get(0));
+            out.flush();
+
+            out.close();
+            System.out.println("Serialization succes");
+        }catch(Exception e){
+            System.out.println(e);
+        }
+
+        System.exit(0);
+    }
+
+
+    public void Deserializacia(){
+
+        try{
+
+            ObjectInputStream in=new ObjectInputStream(new FileInputStream("f.txt"));
+            Sklad s=(Sklad)in.readObject();
+
+
+            System.out.println("--------------------- PREDOŠLÝ SKLAD ------------------------------");
+            System.out.println("NAZOV SKLADU: " + s.getNazovFirmy() + " STAV UCTU: " + s.getStavBakovehoUctu() + " ZAMESTNANCI: " + s.getPocetZamestancov() );
+            System.out.println("-------------------------------------------------------------------");
+
+
+            in.close();
+        }catch(Exception e){System.out.println(e);}
+    }
+
+
+
+
 
      private void DefaultDistributor(){
          listProduktov.add(new Potravina("Mliekaren s.r.o",1520,"Mlieko plnotucne","mliecne",4));
