@@ -50,11 +50,9 @@ public double vypocetVyplaty(int vek, double oddpracovanychhodin, int platovaTri
    double vyplata;  
     
   vyplata = ((10)*platovaTrieda)*oddpracovanychhodin+(vek*platovaTrieda);  
-  System.out.println("VYPLATA - MANAZER :" + vyplata);  
-    
-  sklad.setStavBakovehoUctu(sklad.getStavBakovehoUctu() - vyplata);  
-  System.out.println("STAV " + sklad.getStavBakovehoUctu());  
   
+  sklad.setStavBakovehoUctu(sklad.getStavBakovehoUctu() - vyplata);  
+   
  return vyplata;  
 }
 
@@ -111,9 +109,6 @@ if (zamTmp instanceof Skladnik) {
 ```
 ### Použitie lambda výrazov alebo referencií na metódy (method references)
 
-```java
-listProduktov.forEach( (n) -> { System.out.println(n.getNazovProduktu() + " QTY: " + n.getNumberOfProducts()); } );
-```
 ```java
 listObservableZamestnancov.forEach( (n) -> {  
   
@@ -202,3 +197,63 @@ public class Sklad extends Produkt implements Serializable  {
 	 private int kapacita;
  }
 ```
+### Vlastná vínimka
+
+```java
+public ManazerskeRozhranieController(ManazerskeRozhranieView manazerskeRozhranieView, HlavneMenuModel hlavneMenuModel) {  
+  
+  
+    manazerskeRozhranieView.getBtnZobrazitStavSkladu().setOnAction(e-> {  
+        String string;  
+  
+ try{  
+            string = hlavneMenuModel.StavSkladuHlavneho();  
+  manazerskeRozhranieView.appendText(string);  
+  
+  }catch (MyException exception){  
+            manazerskeRozhranieView.appendText("NEEXISTUJU NIESU ŽIADNY ZAMESTNATNCI");  
+  }  
+  });  
+  
+  
+}
+```
+```java
+
+public class MyException extends Throwable {  
+    public MyException(String message){  
+        super(message);  
+  }  
+}
+```
+```java
+
+public String StavSkladuHlavneho() throws MyException {  
+    String mainString = null;  
+  
+ if(listProduktov == null){  
+        throw new MyException("ERROR ZIADNE PRODUKTY NIESU VYTVORENE");  
+  }
+  ...
+```
+### Viac niťovosť 
+
+```java
+public class MyThread extends Thread {  
+  
+    @Override  
+  public void run() {  
+        super.run();  
+  }  
+}
+```
+```java
+public class MyThread2  extends Thread {  
+    @Override  
+  public void run() {  
+        super.run();  
+  }  
+}
+```
+
+
