@@ -7,7 +7,6 @@ public class Skladnik extends Zamestnanec {
         super(meno, vek, oddpracovanychhodin, platovaTrieda);
         this.produktovZaHodinu = rychlostPrace;
 
-        System.out.println("Vytvoril som skladnika " + meno + "...");
     }
 
     /* ------ POLYMORFIZMUS ------ */
@@ -17,11 +16,9 @@ public class Skladnik extends Zamestnanec {
 
 
         vyplata = ((10)*platovaTrieda)*oddpracovanychhodin+(vek*platovaTrieda);
-        System.out.println("VYPLATA - SKLADNIK :" + vyplata);
 
 
         sklad.setStavBakovehoUctu(sklad.getStavBakovehoUctu() - vyplata);
-        System.out.println("STAV " + sklad.getStavBakovehoUctu());
 
 
         return  vyplata;

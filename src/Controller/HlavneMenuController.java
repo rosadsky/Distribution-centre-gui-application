@@ -12,7 +12,7 @@ public class HlavneMenuController {
 
     Stage stage = new Stage();
 
-    public HlavneMenuController(HlavneMenuView hlavneMenuView, HlavneMenuModel hlavneMenuModel, ZamestnanciView zamestnanciView, SpravaZamestnancovView spravaZamestnancovView, Stage window) {
+    public HlavneMenuController(HlavneMenuView hlavneMenuView, HlavneMenuModel hlavneMenuModel, ZamestnanciView zamestnanciView, SpravaZamestnancovView spravaZamestnancovView,NovyProduktView novyProduktView, Stage window) {
 
     this.hlavneMenuModel = hlavneMenuModel;
     this.hlavneMenuView = hlavneMenuView;
@@ -20,7 +20,8 @@ public class HlavneMenuController {
     this.spravaZamestnancovView = spravaZamestnancovView;
 
         hlavneMenuView.getBtnSimulatorDni().setOnAction(e-> {
-            hlavneMenuModel.stavDni();
+            hlavneMenuModel.stavDni(hlavneMenuView);
+
 
         });
 
@@ -32,6 +33,12 @@ public class HlavneMenuController {
 
         });
 
+        hlavneMenuView.getBtnPridatProdukt().setOnAction(e-> {
+            stage.setScene(novyProduktView.getScenaPridanieProduktu());
+            stage.show();
+
+        });
+
         hlavneMenuView.getBtnSpravaZamestnanca().setOnAction(e-> {
             stage.setScene(spravaZamestnancovView.getScenaSpravaZamestnacov());
             stage.show();
@@ -40,6 +47,7 @@ public class HlavneMenuController {
         hlavneMenuView.getBtnKoniec().setOnAction(e-> {
             hlavneMenuModel.koniecProgramu();
         });
+
 
 
 

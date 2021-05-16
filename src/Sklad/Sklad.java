@@ -19,7 +19,7 @@ public class Sklad extends Produkt implements Serializable  {
         this.stavBakovehoUctu = stavBakovehoUctu;
         this.kapacita = kapacita;
 
-        System.out.println("Nazov: " +  nazovFirmy +" Pocet produktov: " + numberOfProducts +" Zamestnanci: " + pocetZamestancov +" Vozíky: " + pocetVozikov +" KAPITAL: " + stavBakovehoUctu +" Kapacita: " + kapacita);
+        //System.out.println("Nazov: " +  nazovFirmy +" Pocet produktov: " + numberOfProducts +" Zamestnanci: " + pocetZamestancov +" Vozíky: " + pocetVozikov +" KAPITAL: " + stavBakovehoUctu +" Kapacita: " + kapacita);
     }
 
     public int getPocetZamestancov() {
