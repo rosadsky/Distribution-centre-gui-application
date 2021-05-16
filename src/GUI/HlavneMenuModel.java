@@ -4,6 +4,7 @@ import Controller.MyException;
 import Produkt.Potravina;
 import Sklad.Sklad;
 import Zamestnanci.*;
+import distribution.centre.MyThread;
 import distribution.centre.Zakaznik;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,22 +18,35 @@ import java.util.Random;
  * Hlavne menu je trieda kde sa vykonava funkcionalita programu
  */
 public class HlavneMenuModel {
-     ArrayList<Potravina> listProduktov = new ArrayList<Potravina>();
-     ObservableList<Zamestnanec> listObservableZamestnancov = FXCollections.observableArrayList();
-     ObservableList<Zamestnanec> productSelected = null, allProducts = null;
-     ArrayList<Sklad> listSkladov = new ArrayList<Sklad>();
-     ArrayList<Zakaznik> listZakaznikov = new ArrayList<Zakaznik>();
+    private ArrayList<Potravina> listProduktov = new ArrayList<Potravina>();
+    private ObservableList<Zamestnanec> listObservableZamestnancov = FXCollections.observableArrayList();
+    private ObservableList<Zamestnanec> productSelected = null, allProducts = null;
+    private ArrayList<Sklad> listSkladov = new ArrayList<Sklad>();
+    private  ArrayList<Zakaznik> listZakaznikov = new ArrayList<Zakaznik>();
     private int den = 1;
     private int mesiac = 1;
     private int pocetPotravin = 0;
     private int pocetZakaznikov = 2;
 
 
+    public HlavneMenuModel(){
+        Deserializacia();
+        vytvorenieSkladu();
+        vytvorenieZakaznikov();
+        DefaultDistributor();
+        DefaultZamestnanci();
+        MyThread thread1 = new MyThread();
+        thread1.run();
+
+    }
+
     /**
      * Vytvorenie skladu
      */
     public void vytvorenieSkladu(){
-        listSkladov.add(new Sklad(" Centralny sklad", 0,3,30,220000, 20000));
+
+        if (listSkladov == null)
+            listSkladov.add(new Sklad(" Centralny sklad", 0,3,30,220000, 20000));
     }
 
     /**
@@ -64,15 +78,7 @@ public class HlavneMenuModel {
      * Konstruktor kde zavolame vsetky prvotne funkcie na vytvorenie potrebnych objektov
      */
 
-    public HlavneMenuModel(){
-         Deserializacia();
-         vytvorenieSkladu();
-         vytvorenieZakaznikov();
-         DefaultDistributor();
-         DefaultZamestnanci();
 
-
-     }
 
     /**
      *  Zakladny zamestnanci
@@ -454,8 +460,9 @@ public class HlavneMenuModel {
         try{
 
             ObjectInputStream in=new ObjectInputStream(new FileInputStream("f.txt"));
-            Sklad s=(Sklad)in.readObject();
+            Sklad s = (Sklad)in.readObject();
 
+            listSkladov.add(s);
 
           //  System.out.println("--------------------- PREDOŠLÝ SKLAD ------------------------------");
           //  System.out.println("NAZOV SKLADU: " + s.getNazovFirmy() + " STAV UCTU: " + s.getStavBakovehoUctu() + " ZAMESTNANCI: " + s.getPocetZamestancov() );
@@ -489,6 +496,14 @@ public class HlavneMenuModel {
         // System.out.println("Pocet druhov potravín v sklade: [" + pocetPotravin + "] ");
      }
 
+
+     public void najomneSkladu(int i){
+
+      //  listSkladov.get(0).setStavBakovehoUctu(listSkladov.get(0).getStavBakovehoUctu() - i);
+        //System.out.println(listSkladov.get(0).getStavBakovehoUctu());
+         System.out.println("HELLO");
+     }
+
     /**
      * Spajanie stringu pre stav skladu s vlastnou výnimkou ak niesu produkty vytvorené tak vyhodí error
       * @return - vracia spojeny string vsetkych informacii o sklade
@@ -515,6 +530,8 @@ public class HlavneMenuModel {
         this.listProduktov = listProduktov;
     }
 
-
+    public ArrayList<Sklad> getListSkladov() {
+        return listSkladov;
+    }
 }
 

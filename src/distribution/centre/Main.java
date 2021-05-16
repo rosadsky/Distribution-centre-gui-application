@@ -20,65 +20,15 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-
-        launch(args);
-
+    launch(args);
     }
 
 
-/*
-    @Override
     public void start(Stage primaryStage) throws Exception {
 
-        window = primaryStage;
-
-        //Scéna na pridanie produktu
-        scenaPridanieProduktu= ScenaProdukt.makeProdukt(window);
-
-        scenaPridanieSkladnik = ScenaSkladnik.makeSkladnik(window);
-
-        scenaPrehladZamestnancov = PrehladZamestnancov.showPrehlad(window);
-
-        // HLAVNA SCÉNA {
-
-        Button PridanieProduktu = new Button("   Pridanie produktu    ");
-
-        Button PridanieSkladnika = new Button("  Pridanie zamestnanca  ");
-
-        Button PrehladZamestnancov = new Button(" Prehlad zamestnancov ");
-
-        PridanieProduktu.setOnAction(e -> {
-            window.setScene(scenaPridanieProduktu);
-
-        });
-
-        PridanieSkladnika.setOnAction(e -> {
-            window.setScene(scenaPridanieSkladnik);
-        });
-
-        PrehladZamestnancov.setOnAction(e -> {
-            window.setScene(scenaPrehladZamestnancov);
-        });
-
-        VBox layout1 = new VBox(20);
-        layout1.getChildren().addAll(PridanieProduktu,PridanieSkladnika,PrehladZamestnancov);
-
-        layout1.setPadding(new Insets(50, 5, 10, 50));
-        scene1 = new Scene(layout1,400,400);
-
-        window.setScene(scene1);
-        window.setTitle("Distribution Centre System ");
-        window.show();
-
-
-    }
-    */
-
-    public void start(Stage primaryStage) throws Exception {
 
         Stage window = primaryStage;
         Stage okno;
-
 
 
         ZamestnanciView zamestnanciView = new ZamestnanciView();
