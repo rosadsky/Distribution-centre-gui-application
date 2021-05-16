@@ -1,7 +1,10 @@
 
 # Distribution centre project 🛒
 
+Roman Osadsky
 
+ Program, ktory riesi procesy v distribucnom centre. Spravuje sklady, skladove zasoby, zamestnancov a ich vyplaty, rychlost prace. Potraviny za urcitych podmienok posiela zakaznikom. Potraviny do skladu vzdy su na objednavku, ktoru spracuva manazer. Hlavna funcionalita programu prebieha v classe HlavneMenuModel.
+ 
  
 ### 1. Hierarchia dedenia
  Použitá pri classach zamestnatncov.
