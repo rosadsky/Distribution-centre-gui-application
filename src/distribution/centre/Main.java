@@ -98,6 +98,7 @@ public class Main extends Application {
 
 
         window.setScene(hlavneMenuView.getScenaHlavneMenu());
+        window.setTitle("Distribution centre system by Roman Osadsky");
         window.show();
 
 

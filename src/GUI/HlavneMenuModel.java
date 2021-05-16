@@ -11,6 +11,11 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Opíšem niečo o classe aj atribúty ak chcem
+ *
+ */
+
 public class HlavneMenuModel {
      ArrayList<Potravina> listProduktov = new ArrayList<Potravina>();
      ObservableList<Zamestnanec> listObservableZamestnancov = FXCollections.observableArrayList();
@@ -27,6 +32,8 @@ public class HlavneMenuModel {
     public void vytvorenieSkladu(){
         listSkladov.add(new Sklad(" Centralny sklad", 0,3,30,220000, 15000));
     }
+
+
 
     public void vytvorenieZakaznikov(){
 
@@ -193,6 +200,12 @@ public class HlavneMenuModel {
         }
     }
 
+    /**
+     *  - čo robí funkcia *metóda
+     * @param rychlost  - opíšem parametre
+     * @param pocetHodin
+     */
+    
     public void pickPotravina(int rychlost, int pocetHodin){
         Random rand = new Random();
 
@@ -244,6 +257,7 @@ public class HlavneMenuModel {
 
 
     }
+
 
     public boolean pracaManazera(){
 
