@@ -45,7 +45,6 @@ public class HlavneMenuView {
         textArea.setPrefHeight(400);
         hlavneMenu.getChildren().addAll(textLabel_welcome);
         hlavneMenu.getChildren().addAll(btnPridatZamestnanca,btnPridatProdukt,btnSpravaZamestnanca,btnManazer,btnZamestanec,btnKoniec);
-       hlavnemenu_3.getChildren().addAll(btnAktualnyDen);
 
         hlavnemenu_2.getChildren().addAll(textLabel_Simulator,textArea,hlavnemenu_3,btnSimulatorDni);
 

@@ -28,12 +28,9 @@ public class HlavneMenuModel {
     private int pocetZakaznikov = 2;
 
 
-
     public void vytvorenieSkladu(){
         listSkladov.add(new Sklad(" Centralny sklad", 0,3,30,220000, 20000));
     }
-
-
 
     public void vytvorenieZakaznikov(){
 
@@ -57,20 +54,7 @@ public class HlavneMenuModel {
 
     }
 
-    public void stavSkladu(){
-
-        for( Zakaznik zakTmp : listZakaznikov){
-            System.out.println("------------------------------------");
-            System.out.println("SKLAD: " + zakTmp.getNazovZakaznika() );
-            for (int i = 0; i < zakTmp.getNumberOfProducts(); i++){
-               // System.out.println("PRODUKT: " + zakTmp.getListPotravin().get(i).getNazovProduktu() + " NA DODANIE: " + zakTmp.getListPotravin().get(i).getNumberOfProducts());
-            }
-        }
-    }
-
-
-
-     public HlavneMenuModel(){
+    public HlavneMenuModel(){
          Deserializacia();
          vytvorenieSkladu();
          vytvorenieZakaznikov();
@@ -285,7 +269,6 @@ public class HlavneMenuModel {
 
     }
 
-
     public boolean pracaManazera(){
 
         Random rand = new Random();
@@ -306,6 +289,31 @@ public class HlavneMenuModel {
         return false;
     }
 
+
+    public String vypisZamestnancov(boolean SkladnikBool,boolean ManazerBool, boolean PekarBool){
+        String mainString = "";
+
+        for (Zamestnanec zamTmp : listObservableZamestnancov){
+
+            if (zamTmp instanceof Skladnik && SkladnikBool){
+                mainString = mainString + zamTmp.getMeno() +" HODINY: "+ zamTmp.getOddpracovanychhodin() + " PRODUKTY ZA HODINU: "+ ((Skladnik) zamTmp).getproduktovZaHodinu() + "\n";
+            }
+
+            if (zamTmp instanceof Manazer && ManazerBool){
+                mainString = mainString + zamTmp.getMeno() + " HODINY: " + zamTmp.getOddpracovanychhodin() + "BONUSOVE BODY: " + ((Manazer) zamTmp).getPocetBonusovychBodov() + "\n";
+            }
+
+            if (zamTmp instanceof Pekar && PekarBool){
+                mainString = mainString + zamTmp.getMeno() + " HODINY: " + zamTmp.getOddpracovanychhodin() + "CHLEBY ZA HODINU: " + ((Pekar) zamTmp).getPocetChlebovZaHodinu() + "\n";
+
+            }
+
+
+        }
+
+        return mainString;
+    }
+
     public void pridanieZamestnanca(String meno, int vek, boolean checkSkladnik, boolean checkManager, boolean checkPekar ){
 
         if (checkSkladnik)
@@ -317,7 +325,6 @@ public class HlavneMenuModel {
         if (checkPekar)
             listObservableZamestnancov.add(new Pekar(meno,vek,0,2,0));
     }
-
 
     public void pridanieProduktu(String vyrobca,String nazov, int pocet, boolean mliecny, boolean trvanlivy, boolean mrazeny){
 
@@ -350,9 +357,6 @@ public class HlavneMenuModel {
         this.allProducts = allProducts;
     }
 
-
-    // serializácia
-
     public void koniecProgramu(){
 
         try{
@@ -373,7 +377,6 @@ public class HlavneMenuModel {
         System.exit(0);
     }
 
-
     public void Deserializacia(){
 
         try{
@@ -391,11 +394,7 @@ public class HlavneMenuModel {
         }catch(Exception e){System.out.println(e);}
     }
 
-
-
-
-
-     private void DefaultDistributor(){
+    private void DefaultDistributor(){
          listProduktov.add(new Potravina("Mliekaren s.r.o",1520,"Mlieko plnotucne","mliecne",4));
          listProduktov.add(new Potravina("Mliekaren s.r.o",6000,"Jogurt","mliecne",4));
          listProduktov.add(new Potravina("Mliekaren s.r.o",1100,"Syr Niva","mliecne",4));
@@ -415,7 +414,7 @@ public class HlavneMenuModel {
         // System.out.println("Pocet druhov potravín v sklade: [" + pocetPotravin + "] ");
      }
 
-     public String StavSkladuHlavneho(){
+    public String StavSkladuHlavneho(){
         String mainString = null;
 
 
@@ -425,7 +424,6 @@ public class HlavneMenuModel {
 
          return mainString;
      }
-
 
     public ArrayList<Potravina> getListProduktov() {
         return listProduktov;
