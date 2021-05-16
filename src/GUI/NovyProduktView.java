@@ -23,9 +23,9 @@ public class NovyProduktView {
     TextField meno = new TextField();
     TextField vyrobca = new TextField();
     TextField pocetProduktov = new TextField();
-    CheckBox boxSkladnik = new CheckBox("mliecny");
-    CheckBox boxManager = new CheckBox("trvanlinvy");
-    CheckBox boxPekar = new CheckBox("mrazeny");
+    CheckBox mliecny = new CheckBox("mliecny");
+    CheckBox trvanlinvy = new CheckBox("trvanlinvy");
+    CheckBox mrazeny  = new CheckBox("mrazeny");
     Button btnPridatProdukt = new Button("PRIDAŤ PRODUKT");
 
 
@@ -40,12 +40,41 @@ public class NovyProduktView {
 
         pridanieSkladnik.setPadding(new Insets(5, 400, 10, 5));
         pridanieSkladnik.getChildren().addAll(textLabel4,vyrobca,textLabel, meno);
-        pridanieSkladnik.getChildren().addAll(textLabel1, pocetProduktov, textLabel2, boxSkladnik, boxManager, boxPekar,textLabel3,btnPridatProdukt);
+        pridanieSkladnik.getChildren().addAll(textLabel1, pocetProduktov, textLabel2, mliecny, trvanlinvy, mrazeny,textLabel3,btnPridatProdukt);
         scenaPridanieProduktu = new Scene(pridanieSkladnik, 600, 300);
 
     }
 
     public Scene getScenaPridanieProduktu() {
         return scenaPridanieProduktu;
+    }
+
+
+    public TextField getMeno() {
+        return meno;
+    }
+
+    public TextField getVyrobca() {
+        return vyrobca;
+    }
+
+    public TextField getPocetProduktov() {
+        return pocetProduktov;
+    }
+
+    public CheckBox getMliecny() {
+        return mliecny;
+    }
+
+    public CheckBox getTrvanlinvy() {
+        return trvanlinvy;
+    }
+
+    public CheckBox getMrazeny() {
+        return mrazeny;
+    }
+
+    public Button getBtnPridatProdukt() {
+        return btnPridatProdukt;
     }
 }

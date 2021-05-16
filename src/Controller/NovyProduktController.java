@@ -1,24 +1,27 @@
 package Controller;
 
 import GUI.HlavneMenuModel;
+import GUI.NovyProduktView;
 import GUI.ZamestnanciView;
 
 public class NovyProduktController {
 
-    private ZamestnanciView zamestnanciView;
+    private NovyProduktView novyProduktView;
     private GUI.HlavneMenuModel HlavneMenuModel;
 
-    public NovyProduktController(ZamestnanciView zamestnanciView, HlavneMenuModel HlavneMenuModel) {
+    public NovyProduktController(NovyProduktView NovyProduktView, HlavneMenuModel hlavneMenuModel) {
 
-        this.zamestnanciView = zamestnanciView;
-        this.HlavneMenuModel = HlavneMenuModel;
+        this.novyProduktView = NovyProduktView;
+        this.HlavneMenuModel = hlavneMenuModel;
 
-        zamestnanciView.getBtnSkladnik().setOnAction(e -> {
-            String menoZamestnanca = zamestnanciView.getMeno().getText();
-            int vekZamestnanca = Integer.parseInt(zamestnanciView.getVek().getText());
+        novyProduktView.getBtnPridatProdukt().setOnAction(e -> {
+            String nazovVyrobcu = novyProduktView.getVyrobca().getText();
+            String nazovProduktu = novyProduktView.getMeno().getText();
 
-            HlavneMenuModel.pridanieZamestnanca(menoZamestnanca,vekZamestnanca,zamestnanciView.getBoxSkladnik().isSelected(),zamestnanciView.getBoxManager().isSelected(),zamestnanciView.getBoxPekar().isSelected());
-            zamestnanciView.getScenaPridanieSkladnik().getWindow().hide();
+            int pocetProduktov = Integer.parseInt(novyProduktView.getPocetProduktov().getText());
+
+            hlavneMenuModel.pridanieProduktu(nazovVyrobcu,nazovProduktu,pocetProduktov,novyProduktView.getMliecny().isSelected(),novyProduktView.getTrvanlinvy().isSelected(),novyProduktView.getMrazeny().isSelected());
+            novyProduktView.getScenaPridanieProduktu().getWindow().hide();
 
         } );
 

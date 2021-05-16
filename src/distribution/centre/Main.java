@@ -86,7 +86,7 @@ public class Main extends Application {
         HlavneMenuView hlavneMenuView = new HlavneMenuView();
         HlavneMenuModel hlavneMenuModel = new HlavneMenuModel();
         NovyProduktView novyProduktView = new NovyProduktView();
-        NovyProduktController novyProduktController = new NovyProduktController(zamestnanciView,hlavneMenuModel);
+        NovyProduktController novyProduktController = new NovyProduktController(novyProduktView,hlavneMenuModel);
 
 
         HlavneMenuController hlavneMenuController = new HlavneMenuController(hlavneMenuView,hlavneMenuModel,zamestnanciView,spravaZamestnancovView,novyProduktView,window);
