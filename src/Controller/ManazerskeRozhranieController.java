@@ -10,9 +10,16 @@ public class ManazerskeRozhranieController {
 
 
         manazerskeRozhranieView.getBtnZobrazitStavSkladu().setOnAction(e-> {
+            String string;
 
-            manazerskeRozhranieView.appendText(hlavneMenuModel.StavSkladuHlavneho());
+            try{
 
+                string = hlavneMenuModel.StavSkladuHlavneho();
+                manazerskeRozhranieView.appendText(string);
+
+            }catch (MyException exception){
+                manazerskeRozhranieView.appendText("NEEXISTUJU NIESU ŽIADNY ZAMESTNATNCI");
+            }
 
 
         });

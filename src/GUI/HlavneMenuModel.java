@@ -1,5 +1,6 @@
 package GUI;
 
+import Controller.MyException;
 import Produkt.Potravina;
 import Sklad.Sklad;
 import Zamestnanci.*;
@@ -11,11 +12,10 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Random;
 
-/**
- * Opíšem niečo o classe aj atribúty ak chcem
- *
- */
 
+/**
+ * Hlavne menu je trieda kde sa vykonava funkcionalita programu
+ */
 public class HlavneMenuModel {
      ArrayList<Potravina> listProduktov = new ArrayList<Potravina>();
      ObservableList<Zamestnanec> listObservableZamestnancov = FXCollections.observableArrayList();
@@ -28,10 +28,16 @@ public class HlavneMenuModel {
     private int pocetZakaznikov = 2;
 
 
+    /**
+     * Vytvorenie skladu
+     */
     public void vytvorenieSkladu(){
         listSkladov.add(new Sklad(" Centralny sklad", 0,3,30,220000, 20000));
     }
 
+    /**
+     * Vytvorenie zakaznikov, ktorym dodavame produkty
+     */
     public void vytvorenieZakaznikov(){
 
         ArrayList<Potravina> listPotravinZakaznik = new ArrayList<Potravina>();
@@ -54,6 +60,10 @@ public class HlavneMenuModel {
 
     }
 
+    /**
+     * Konstruktor kde zavolame vsetky prvotne funkcie na vytvorenie potrebnych objektov
+     */
+
     public HlavneMenuModel(){
          Deserializacia();
          vytvorenieSkladu();
@@ -64,11 +74,19 @@ public class HlavneMenuModel {
 
      }
 
+    /**
+     *  Zakladny zamestnanci
+     */
     public void DefaultZamestnanci(){
         listObservableZamestnancov.add(new Skladnik("Peter Gerat",21,50,1,0));
         listObservableZamestnancov.add(new Manazer("Roman Osadsky",18,220,3,1));
         listObservableZamestnancov.add(new Pekar("Jozef Pidik",43,120,2,1));
     }
+
+    /**
+     * Fungovanie programu, pomocou tlacitka +1 den, sklad vdaka tomu pracuje po dnoch
+     * @param hlavneMenuView - parameter vypisovanie udajov co sa prave deje so skladom
+     */
 
     public void stavDni(HlavneMenuView hlavneMenuView) {
         den++;
@@ -124,6 +142,10 @@ public class HlavneMenuModel {
         vykonavaniePraceZamestnanca(hlavneMenuView);
     }
 
+
+    /**
+     * Vygenerovanie objednavky zakaznika ked splnime tie co boli zadane
+     */
     public void novaObjednavkaZakaznika(){
 
      for (int i = 0; i < 2;i++) {
@@ -136,6 +158,11 @@ public class HlavneMenuModel {
          }
      }
     }
+
+    /**
+     * Vypocitavanie vyplat zamestnocov
+     * @param hlavneMenuView - pre vypis v GUI
+     */
 
     public void vypocitavanieVyplatZamestnancov(HlavneMenuView hlavneMenuView){
 
@@ -156,6 +183,11 @@ public class HlavneMenuModel {
 
 
     }
+
+    /**
+     * Nahodne generovanie prace zamestnanca
+     * @param hlavneMenuView - pre vypis v GUI
+     */
 
     public void vykonavaniePraceZamestnanca(HlavneMenuView hlavneMenuView) {
 
@@ -201,6 +233,10 @@ public class HlavneMenuModel {
 
                 if(pracaManazera()){
                     ((Manazer) zamTmp).setPocetBonusovychBodov(((Manazer) zamTmp).getPocetBonusovychBodov()+1);
+
+                    if(((Manazer) zamTmp).kontrolaSkladu(listSkladov,listProduktov)){
+                        ((Manazer) zamTmp).setPocetBonusovychBodov(((Manazer) zamTmp).getPocetBonusovychBodov()+1);
+                    }
                     //System.out.println("VYKONAL OBJEDNAVKU ! ");
                 } else {
                     //System.out.println("NIČ NEVYKONAL");
@@ -212,12 +248,13 @@ public class HlavneMenuModel {
         }
     }
 
-    /**
-     *  - čo robí funkcia *metóda
-     * @param rychlost  - opíšem parametre
-     * @param pocetHodin
-     */
 
+    /**
+     * Nahodne generovanie vyberu potravin so skladu, zo skladu aj ubudaju potraviny pripocitavaju sa k zakaznikovi
+      * @param rychlost - rychlost prace zamestnanca
+     * @param pocetHodin - pocet hodin kolko zamestannec pracuje
+     * @param hlavneMenuView . pre vypis v GUI
+     */
     public void pickPotravina(int rychlost, int pocetHodin,HlavneMenuView hlavneMenuView){
         Random rand = new Random();
 
@@ -269,6 +306,11 @@ public class HlavneMenuModel {
 
     }
 
+    /**
+     *  Nahodne generovanie prace zamestnanca, manazer kontroluje ci na sklade je dostatok potravin ak nie objedna
+     * @return - vrati true ak manazer objednal produkty
+     */
+
     public boolean pracaManazera(){
 
         Random rand = new Random();
@@ -289,7 +331,13 @@ public class HlavneMenuModel {
         return false;
     }
 
-
+    /**
+     * Vypis zamestnancov pre GUI, pomocou skladanie stringu
+     * @param SkladnikBool -  ak je skladnik zak sa sklada string s skladnikov
+     * @param ManazerBool - ak manazer tak sa sklada string s manazerov
+     * @param PekarBool - ak je pekar tak sa sklada string s pekarov
+     * @return - string ktory sklada program
+     */
     public String vypisZamestnancov(boolean SkladnikBool,boolean ManazerBool, boolean PekarBool){
         String mainString = "";
 
@@ -314,6 +362,15 @@ public class HlavneMenuModel {
         return mainString;
     }
 
+
+    /**
+     * Pridanie zamastneca z GUI,
+     * @param meno
+     * @param vek
+     * @param checkSkladnik - aby program vedel ci vytvorit skladnika
+     * @param checkManager - aby program vedel ci vytvorit manazera
+     * @param checkPekar - aby program vedel ci vytvorit pekara
+     */
     public void pridanieZamestnanca(String meno, int vek, boolean checkSkladnik, boolean checkManager, boolean checkPekar ){
 
         if (checkSkladnik)
@@ -326,6 +383,15 @@ public class HlavneMenuModel {
             listObservableZamestnancov.add(new Pekar(meno,vek,0,2,0));
     }
 
+    /**
+     * Pridanie produktu z GUI
+     * @param vyrobca
+     * @param nazov
+     * @param pocet
+     * @param mliecny
+     * @param trvanlivy
+     * @param mrazeny
+     */
     public void pridanieProduktu(String vyrobca,String nazov, int pocet, boolean mliecny, boolean trvanlivy, boolean mrazeny){
 
         if (mliecny)
@@ -357,6 +423,9 @@ public class HlavneMenuModel {
         this.allProducts = allProducts;
     }
 
+    /**
+     * Ukoncenie programu serializaciou
+     */
     public void koniecProgramu(){
 
         try{
@@ -377,6 +446,9 @@ public class HlavneMenuModel {
         System.exit(0);
     }
 
+    /**
+     * Deserializacia pri spustení programu
+     */
     public void Deserializacia(){
 
         try{
@@ -394,6 +466,9 @@ public class HlavneMenuModel {
         }catch(Exception e){System.out.println(e);}
     }
 
+    /**
+     * Vytvorenie defaultneho distributora
+     */
     private void DefaultDistributor(){
          listProduktov.add(new Potravina("Mliekaren s.r.o",1520,"Mlieko plnotucne","mliecne",4));
          listProduktov.add(new Potravina("Mliekaren s.r.o",6000,"Jogurt","mliecne",4));
@@ -414,9 +489,16 @@ public class HlavneMenuModel {
         // System.out.println("Pocet druhov potravín v sklade: [" + pocetPotravin + "] ");
      }
 
-    public String StavSkladuHlavneho(){
+    /**
+     * Spajanie stringu pre stav skladu s vlastnou výnimkou ak niesu produkty vytvorené tak vyhodí error
+      * @return - vracia spojeny string vsetkych informacii o sklade
+     */
+    public String StavSkladuHlavneho() throws MyException {
         String mainString = null;
 
+        if(listProduktov == null){
+            throw new MyException("ERROR ZIADNE PRODUKTY NIESU VYTVORENE");
+        }
 
          for(Potravina potrTmp : listProduktov){
              mainString = mainString + " PRODUKT: "+  potrTmp.getNazovProduktu() +" QTY: " + potrTmp.getNumberOfProducts()+ " VYROBCA" + potrTmp.getNazovFirmy()+"\n";

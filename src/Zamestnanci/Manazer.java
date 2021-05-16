@@ -19,8 +19,6 @@ public class Manazer extends Zamestnanec implements KontrolaPreplneniaSkladu {
 
         //System.out.println("(10)*" + platovaTrieda+ "*" + oddpracovanychhodin + "+"+ vek+ "*"+ platovaTrieda );
         vyplata = ((10)*platovaTrieda)*oddpracovanychhodin+(vek*platovaTrieda);
-
-
         sklad.setStavBakovehoUctu(sklad.getStavBakovehoUctu() - vyplata);
 
         return vyplata;

@@ -13,6 +13,15 @@ public abstract class Zamestnanec extends Osoba {
 
     /* ------ POLYMORFIZMUS ------ */
 
+
+    /**
+     * Vypocet vyplaty, kde sa vyuziva polymorfizmus, kazdy typ zamestnanca ma iny vypocet vyplaty
+     * @param vek
+     * @param oddpracovanychhodin
+     * @param platovaTrieda
+     * @param sklad
+     * @return
+     */
     public abstract double vypocetVyplaty(int vek, double oddpracovanychhodin, int platovaTrieda, Sklad sklad);
 
     public double getOddpracovanychhodin() {

@@ -7,9 +7,15 @@ import java.util.ArrayList;
 
 public interface KontrolaPreplneniaSkladu {
 
+    /**
+     * Defaultna metoda, kde sa kontroluje preplnenie skladu
+     * @param listSkladov
+     * @param listProduktov
+     * @return
+     */
     default boolean kontrolaSkladu(ArrayList<Sklad> listSkladov, ArrayList<Potravina> listProduktov )
     {
-        System.out.println("Defaultna metóda vykonaná");
+       // System.out.println("Defaultna metóda vykonaná");
 
         int totalKapacita= 0;
         for (Potravina potrTmp : listProduktov){
