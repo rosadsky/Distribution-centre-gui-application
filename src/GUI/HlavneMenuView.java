@@ -98,5 +98,13 @@ public class HlavneMenuView {
     public Button getBtnPridatProdukt() {
         return btnPridatProdukt;
     }
+
+    public Button getBtnManazer() {
+        return btnManazer;
+    }
+
+    public Button getBtnZamestanec() {
+        return btnZamestanec;
+    }
 }
 

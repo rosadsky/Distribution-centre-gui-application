@@ -415,18 +415,15 @@ public class HlavneMenuModel {
         // System.out.println("Pocet druhov potravín v sklade: [" + pocetPotravin + "] ");
      }
 
-     private void StavSkladu(Sklad hlavnysklad){
-         int pocetProduktovTotal = 0;
+     public String StavSkladuHlavneho(){
+        String mainString = null;
 
 
-         //------------------- POUŽITIE LAMBDA VÝRAZU --------------------------
+         for(Potravina potrTmp : listProduktov){
+             mainString = mainString + " PRODUKT: "+  potrTmp.getNazovProduktu() +" QTY: " + potrTmp.getNumberOfProducts()+ " VYROBCA" + potrTmp.getNazovFirmy()+"\n";
+         }
 
-        // listProduktov.forEach( (n) -> { System.out.println(n.getNazovProduktu() + " QTY: " + n.getNumberOfProducts()); } );
-
-
-         //System.out.println("POCET PRODUKTOV V SKLADE: " + pocetProduktovTotal +" / "+ hlavnysklad.getStavBakovehoUctu());
-         //System.out.println("VOLNA KAPACITA: " + (hlavnysklad.getKapacita() - pocetProduktovTotal));
-
+         return mainString;
      }
 
 

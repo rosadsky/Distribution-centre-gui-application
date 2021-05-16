@@ -85,11 +85,18 @@ public class Main extends Application {
         SpravaZamestnancovView spravaZamestnancovView = new SpravaZamestnancovView();
         HlavneMenuView hlavneMenuView = new HlavneMenuView();
         HlavneMenuModel hlavneMenuModel = new HlavneMenuModel();
+
         NovyProduktView novyProduktView = new NovyProduktView();
         NovyProduktController novyProduktController = new NovyProduktController(novyProduktView,hlavneMenuModel);
 
+        ManazerskeRozhranieView manazerskeRozhranieView = new ManazerskeRozhranieView();
+        ManazerskeRozhranieController manazerskeRozhranieController = new ManazerskeRozhranieController(manazerskeRozhranieView,hlavneMenuModel);
 
-        HlavneMenuController hlavneMenuController = new HlavneMenuController(hlavneMenuView,hlavneMenuModel,zamestnanciView,spravaZamestnancovView,novyProduktView,window);
+
+        ZamestnaneckeRozhranieView zamestnaneckeRozhranieView = new ZamestnaneckeRozhranieView();
+        ZamestaneckeRozhranieController zamestaneckeRozhranieController = new ZamestaneckeRozhranieController(zamestnaneckeRozhranieView,hlavneMenuModel);
+
+        HlavneMenuController hlavneMenuController = new HlavneMenuController(hlavneMenuView,hlavneMenuModel,zamestnanciView,spravaZamestnancovView,novyProduktView,manazerskeRozhranieView,window);
         ZamestnanciController zamestnanciController = new ZamestnanciController(zamestnanciView,hlavneMenuModel);
         SpravaZamestnancovController spravaZamestnancovController = new SpravaZamestnancovController(spravaZamestnancovView,hlavneMenuModel);
 
